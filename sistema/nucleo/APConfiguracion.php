@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* inicio la configuracion*/
 define('Ap_CONFIG_INICIO', 'true');
@@ -24,9 +24,9 @@ define('Ap_LOCALE', 'es_ES');
 /* Create una cuenta con google analytics y agrega el UA en la constante */
 define('Ap_ANALYTICS', 'UA-xxxxxx');
 
-/* con la siguiente constante podras crear una ip fija de tu empresa para hacer 
-* pruebas en tu entorno de red basado en tu ip que te ofrece tu proveedor de servicio
-*/
+/* con la siguiente constante podras crear una ip fija de tu empresa para hacer
+ * pruebas en tu entorno de red basado en tu ip que te ofrece tu proveedor de servicio
+ */
 define('Ap_IPPRUEBAS', 'x.x.x.x');
 
 /* Transladamos a formato local */
@@ -76,16 +76,16 @@ define('Ap_AP_CREDITOS', 'CopyLeft 2020 Debeloped by Efrasoft');
 define('Ap_KEY_MD5', 'P0L1');
 
 /*  en el controlador concatena la constante con el llamado a la funcion generarCadenaAleatoria() de AP_PHPSeguridad */
-define('Ap_CSRF_SECRET','APbeta');
+define('Ap_CSRF_SECRET', 'APbeta');
 
 /*  Si usted va a utilizar SSL debe de cambiar a true */
-define('Ap_SESION_PARAMETRO_SEGURO','false');
+define('Ap_SESION_PARAMETRO_SEGURO', 'false');
 
 /*  Cree niveles de usuario aqui solo cambie el numero aqui y en la tabla perfiles  */
-define('root','1234');
-define('admin','2345');
-define('editor','3456');
-define('publicador','2233');
+define('root', '1234');
+define('admin', '2345');
+define('editor', '3456');
+define('publicador', '2233');
 
 /* #base de datos */
 

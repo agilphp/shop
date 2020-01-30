@@ -41,10 +41,10 @@ define('Ap_PATH_DATA', dirname(__FILE__) . '/AP-data');
 #Configuracion Basica
 
 /* La siguiente CONSTANTE permite el apuntapiento para archivos js, css, imagenes desde la vista hacia el directorio _public */
-define('Ap_BASE_URL', 'http://localhost/shopEvertec/');
+define('Ap_BASE_URL', 'http://localhost/shop/');
 
 /* definimos un controlador inicial en nuestro proyecto */
-define('CONTROLADOR_INICIAL', 'usuario');
+define('CONTROLADOR_INICIAL', 'tienda');
 
 /* Sedefine una CONSTANTE al directorio adicionales en la vista */
 define('ADICIONALES_VISTA', 'adicionales');
@@ -59,16 +59,16 @@ define('Ap_NOMBRE_TEMA_WEB', 'Inspinia');
 define('Ap_TEMA_DASHBOARD', 'temas/dashboard/inspinia');
 
 /* Definimos una CONSTANTE como nombre de aplicacion */
-define('Ap_AP_NOMBRE', 'Agilcontador');
+define('Ap_AP_NOMBRE', 'myshop');
 
 /* Definimos un Slogan para la aplicacion web */
-define('Ap_AP_SLOGAN', 'AgilContador como la liebre');
+define('Ap_AP_SLOGAN', 'La tienda de todos');
 
 /* Empresa de la aplicacion */
 define('Ap_AP_EMPRESA', '@efrasoft');
 
 /* Creditos de la aplicacion */
-define('Ap_AP_CREDITOS', 'CopyLeft 2019 Debeloped by AgilContador');
+define('Ap_AP_CREDITOS', 'CopyLeft 2020 Debeloped by Efrasoft');
 
 #webcol seguridad
 

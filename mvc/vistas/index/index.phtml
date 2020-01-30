@@ -1,166 +1,1195 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  
+<!--[if IE 8]>          <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>          <html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  
+<html> 
+  <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="author" content="efrasoft">
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet' type='text/css'>
+        <!-- Library CSS -->
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/bootstrap.css">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/fonts/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/font-awesome.css">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/animations.css" media="screen">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/superfish.css" media="screen">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/revolution-slider/css/settings.css" media="screen">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/revolution-slider/css/extralayers.css" media="screen">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/prettyPhoto.css" media="screen">
+        <!-- Theme CSS -->
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/style.css">
+        <!-- Skin -->
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/colors/green.css" class="colors">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/theme-responsive.css">
+        <!-- Switcher CSS -->
+        <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/switcher.css" rel="stylesheet">
+        <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/css/spectrum.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/fixed/navbar-fixed-right.min.css">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/fixed/navbar-fixed-left.min.css">
+        <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/fixed/docs.css">
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center teal-text text-lighten-2">Agil Php</h1>
-        <div class="row center">
-          <h5 class="header col s12 light">Framework agile, responsive frontend and backend </h5>
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/ico/favicon.ico">
+        <link rel="apple-touch-icon" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/ico/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/ico/apple-touch-icon-72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/ico/apple-touch-icon-114.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/ico/apple-touch-icon-144.png">
+        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <!--[if IE]>
+        <link rel="stylesheet" href="css/ie.css">
+        <![endif]-->
+    </head>
+    <body class="home">
+        <div class="page-mask">
+            <div class="page-loader">
+                <div class="spinner"></div>
+                Loading...
+            </div>
         </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+        <div class="wrap">
+            <!-- Header -->
+            <header id="header">
+                <?php include 'header.php';?>
+                <!-- Main Header -->
+                <div class="main-header">
+                    <div class="container">
+                        <!-- TopNav -->
+                        <div class="topnav navbar-header">
+                            <a class="navbar-toggle down-button" data-toggle="collapse" data-target=".slidedown">
+                            <i class="fa fa-angle-down icon-current"></i>
+                            </a> 
+                        </div>
+                        <!-- /TopNav-->
+                        <!-- Logo -->
+                        <div class="logo pull-left">
+                            <h1>
+                                <a href="index.html">
+                                <img class="logo-color" src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/logos/logofs.png" alt="gallaxy" width="160" height="60">
+                                </a>
+                            </h1>
+                        </div>
+                        <!-- /Logo -->
+                        <?php include "menu.php"; ?>
+                    </div>
+                </div>
+                <!-- /Main Header -->
+            </header>
+            <!-- /Header --> 
+             <!-- Main Section -->
+            <section id="main">
+                <div class="breadcrumb-wrapper">
+                    <div class="pattern-overlay">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+                                    <h2 class="title">Products</h2>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+                                    <div class="breadcrumbs pull-right">
+                                        <ul>
+                                            <li>You are Now on:</li>
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="#">Shop</a></li>
+                                            <li>Products</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Content -->
+                    <nav class="navbar navbar-inverse navbar-fixed-left">
+                        <h3 class="title">Categories</h3>
+                                    <ul class="category-list slide">
+                                        <li><a href="#">Games & Software</a></li>
+                                        <li><a href="#">Mobile & Computers</a></li>
+                                        <li><a href="#">Fashion</a></li>
+                                        <li><a href="#">Books & Audio</a></li>
+                                        <li><a href="#">Kids & Toys</a></li>
+                                        <li><a href="#">Sports</a></li>
+                                    </ul>
+                    </nav>
+
+                <!-- Main Content -->
+                <div class="content margin-top60 margin-bottom60">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Sidebar Start --> 
+                            <div class="sidebar col-lg-4 col-md-4 col-sm-4 col-xs-12">                           
+                                <!-- Category Widget Start -->
+                                <div class="widget category">
+                                    <h3 class="title">Categories</h3>
+                                    <ul class="category-list slide">
+                                        <li><a href="#">Games & Software</a></li>
+                                        <li><a href="#">Mobile & Computers</a></li>
+                                        <li><a href="#">Fashion</a></li>
+                                        <li><a href="#">Books & Audio</a></li>
+                                        <li><a href="#">Kids & Toys</a></li>
+                                        <li><a href="#">Sports</a></li>
+                                    </ul>                                    
+                                </div>
+                                <!-- /Category Widget End -->
+                                <!-- Refine Search Widget Start -->
+                                <div class="widget refine-search">
+                                    <h3 class="title">Refine Search</h3>
+                                    <ul class="box-filter clearfix">
+                                        <li class="first last">
+                                        <span id="filter-group1">Filter by price</span>
+                                        <ul class="clearfix slide">
+                                            <li class="first">
+                                            <input type="checkbox" value="7" id="filter7">
+                                            <label for="filter7">$0.00 - $50.00 (0)</label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" value="8" id="filter8">
+                                            <label for="filter8">$100.00 - $200.00 (8)</label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" value="9" id="filter9">
+                                            <label for="filter9">$200.00 - $400.00 (3)</label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" value="10" id="filter10">
+                                            <label for="filter10">$400.00 - $600.00 (2)</label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" value="11" id="filter11">
+                                            <label for="filter11">$50.00 - $100.00 (2)</label>
+                                            </li>
+                                            <li class="last">
+                                            <input type="checkbox" value="12" id="filter12">
+                                            <label for="filter12">$600.00 - $3.000.00 (2)</label>
+                                            </li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    <a id="button-filter" class="btn-small btn-color btn-pad">Refine Search</a>
+                                </div>
+                                <!-- /Refine Search Widget End -->                                             
+                                <!-- Best Seller Start -->
+                                <div class="widget">
+                                    <h3 class="title">Best Seller</h3>
+                                    <!-- Product Items -->
+                                    <div class="product-block">
+                                        <div class="image ">
+                                            <span class="product-label product-label-special">
+                                            <span>NEW</span>
+                                            </span>
+                                            <!-- Swap image -->
+                                            <div class="flip">
+                                                <a href="product-view.html" class="swap-image">
+                                                <img src="img/shop/product_01.jpg" title="iPhone 5s 64 GB" alt="iPhone 5s 64 GB" class="front">
+                                                </a>
+                                            </div>
+                                            <!-- /Swap image -->
+                                            <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                        </div>
+                                        <div class="product-meta">
+                                            <div class="left">
+                                                <h3 class="name"><a href="product-view.html">iPhone 5s 64 GB</a></h3>
+                                                <div class="price">
+                                                    <span class="price-old">$119.50</span>
+                                                    <span class="price-new">$107.75</span>
+                                                    <span class="price-tax">Ex Tax: $90.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="rating">
+                                                    <img src="img/shop/stars-5.png" alt="Based on 1 reviews.">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Product Items --> 
+                                    <!-- Product Items -->
+                                    <div class="product-block">
+                                        <div class="image ">
+                                            <span class="product-label product-label-special">
+                                            <span>Sale</span>
+                                            </span>
+                                            <!-- Swap image -->
+                                            <div class="flip">
+                                                <a href="product-view.html" class="swap-image">
+                                                <img src="img/shop/product_02.jpg" title="iPhone 4 16 GB" alt="iPhone 4 16 GB" class="front">
+                                                </a>
+                                            </div>
+                                            <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                        </div>
+                                        <div class="product-meta">
+                                            <div class="left">
+                                                <h3 class="name"><a href="product-view.html">iPhone 4 16 GB</a></h3>
+                                                <div class="price">
+                                                    <span class="price-old">$589.50</span>
+                                                    <span class="price-new">$107.75</span>
+                                                    <span class="price-tax">Ex Tax: $90.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="rating">
+                                                    <img src="img/shop/stars-4.png" alt="Based on 1 reviews.">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Product Items                                                                        -->
+                                </div>
+                                <!-- Best Seller End -->                                               
+                                <!-- Tab Start -->
+                                <div class="widget tabs">
+                                    <div id="horizontal-tabs">
+                                        <ul class="tabs">
+                                            <li id="tab1" class="current">Popular</li>
+                                            <li id="tab2">Recent</li>
+                                            <li id="tab3">Comments</li>
+                                        </ul>
+                                        <div class="contents">
+                                            <div class="tabscontent" id="content1" style="display: block;">
+                                                <ul class="posts">
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        <span class="color">27 July 2014</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        <span class="color">30 July 2014</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tabscontent" id="content2">
+                                                <ul class="posts">
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        <span class="color">27 July 2014</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        <span class="color">30 July 2014</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tabscontent" id="content3">
+                                                <ul class="posts">
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        by <span class="color">wptuts+</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><img class="img-thumbnail recent-post-img" alt="" src="img/recent-post-img.jpg"></a>
+                                                        <p><a href="#">Lorem Ipsum is simply dummy text.</a></p>
+                                                        by <span class="color">wptuts+</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Tab End -->                 
+                                <!-- Ads Widget Start -->
+                                <div class="widget ads">
+                                    <h3 class="title">Advertisement</h3>
+                                    <div class="ads-img row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <img class="img-thumbnail" alt="" src="img/ads-small.jpg">
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <img class="img-thumbnail" alt="" src="img/ads-small.jpg">
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <img class="img-thumbnail" alt="" src="img/ads-small.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Ads Widget End -->
+                            </div>
+                            <!-- /Sidebar End --> 
+                            <!-- Products Start-->
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="display">
+                                            <span><b>Display:</b></span>
+                                            <a class="active btn-small btn-color btn-pad"><i class="fa fa-th"></i></a>
+                                            <a class="list btn-small btn-pad" onclick="display(&#39;list&#39;);"><i class="fa fa-th-list"></i></a>
+                                        </div>                                       
+                                    </div>
+                                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 pull-right">
+                                        <div class="input-group">
+                                            <input type="text" value="Search Products" onfocus="if(this.value=='Search Products')this.value='';" onblur="if(this.value=='')this.value='Search Products';" class="search-input form-control product-search-height">
+                                            <span class="input-group-btn">
+                                            <button type="submit" class="subscribe-btn btn product-search-height"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>  
+                                        <!-- /Product Search  -->
+                                    </div>
+                                </div>
+                                <div class="product-grid">
+                                    <div class="products-block">
+                                        <div class="row product-items">
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols first">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>NEW</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_01.jpg" title="iPhone 5s 64 GB" alt="iPhone 5s 64 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <!-- /Swap image -->
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iPhone 5s 64 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$119.50</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-5.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_03.jpg" title="Small TV Box" alt="Small TV Box" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">Small TV Box</a></h3>
+                                                            <div class="price">
+                                                                <span class="special-price">$589.50</span>
+                                                                <span class="price-tax">Ex Tax: $500.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols last">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_04.jpg" title="Box Stereo Remote" alt="Box Stereo Remote" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">Box Stereo Remote</a></h3>
+                                                            <div class="price">
+                                                                <span class="special-price">$589.50</span>
+                                                                <span class="price-tax">Ex Tax: $500.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-3.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                        </div>
+                                        <div class="row product-items">
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols first">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>-10%</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_05.jpg" title="iPhone 5s 16 GB" alt="iPhone 5s 16 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iPhone 5s 16 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$54.88</span>
+                                                                <span class="price-new">$96.00</span>
+                                                                <span class="price-tax">Ex Tax: $80.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-5.png" alt="Based on 2 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_07.jpg" title="LG G-Flex 16 GB" alt="LG G-Flex 16 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a class="pav-colorbox btn btn-theme-default cboxElement" href="product-view.html"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">LG G-Flex 16 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="special-price">$96.00</span>
+                                                                <span class="price-tax">Ex Tax: $80.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-4.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols last">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>-11%</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_08.jpg" title="iMac 27" alt="iMac 27" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iMac 27"</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$1,175.83</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-3.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- /Product Items -->
+                                        </div>                                        
+                                        <div class="row product-items 333">
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols first">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_01.jpg" title="iPhone 5s 32 GB" alt="iPhone 5s 32 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iPhone 5s 32 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="special-price">$237.00</span>
+                                                                <span class="price-tax">Ex Tax: $200.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-5.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>Sale</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_06.jpg" title="Huawei Smart Mobile" alt="Huawei Smart Mobile" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">Huawei Smart Mobile</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$119.50</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-4.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items --> 
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols last">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>Sale</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_02.jpg" title="iPhone 4 16 GB" alt="iPhone 4 16 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iPhone 4 16 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$589.50</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-4.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->                                                                                       
+                                        </div>
+                                        <div class="row product-items last">
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols first">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_09.jpg" title="Smart TV Box" alt="Smart TV Box" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">Smart TV Box</a></h3>
+                                                            <div class="price">
+                                                                <span class="special-price">$1,177.00</span>
+                                                                <span class="price-tax">Ex Tax: $1,000.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-4.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Unprecedented power. The next generation of processing technology has arrived. Built into the newest.....
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>Sale</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_10.jpg" title="LG Monitor 32 Inch" alt="LG Monitor 32 Inch" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">LG Monitor 32 Inch</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$119.50</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-2.png" alt="Based on 1 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                            <!-- Product Items -->
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 product-cols last">
+                                                <div class="product-block">
+                                                    <div class="image ">
+                                                        <span class="product-label product-label-special">
+                                                        <span>Sale</span>
+                                                        </span>
+                                                        <!-- Swap image -->
+                                                        <div class="flip">
+                                                            <a href="product-view.html" class="swap-image">
+                                                            <img src="img/shop/product_02.jpg" title="iPhone 4 16 GB" alt="iPhone 4 16 GB" class="front">
+                                                            </a>
+                                                        </div>
+                                                        <a href="product-view.html" class="pav-colorbox btn btn-theme-default cboxElement"><em class="fa fa-plus"></em><span>View Product</span></a>
+                                                    </div>
+                                                    <div class="product-meta">
+                                                        <div class="left">
+                                                            <h3 class="name"><a href="product-view.html">iPhone 4 16 GB</a></h3>
+                                                            <div class="price">
+                                                                <span class="price-old">$119.50</span>
+                                                                <span class="price-new">$107.75</span>
+                                                                <span class="price-tax">Ex Tax: $90.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="rating">
+                                                                <img src="img/shop/stars-5.png" alt="Based on 2 reviews.">
+                                                            </div>
+                                                            <p class="description">
+                                                                HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high defin.....
+                                                            </p>
+                                                            <div class="action">
+                                                                <div class="cart">
+                                                                    <!-- <input type="button" value="" onclick="addToCart('');" class="product-icon fa fa-shopping-cart shopping-cart" /> -->
+                                                                    <button class="btn btn-shopping-cart">
+                                                                    <span class="fa fa-shopping-cart product-icon hidden-sm">&nbsp;</span>
+                                                                    <span>Add to Cart</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="button-group">
+                                                                    <div class="wishlist">
+                                                                        <a title="Add to Wish List" class="fa fa-heart product-icon">
+                                                                        <span>Add to Wish List</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="compare">
+                                                                        <a title="Add to Compare" class="fa fa-refresh product-icon">
+                                                                        <span>Add to Compare</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Items -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- .product-grid End-->
+                                <div class="row">
+                                    <div class="pagination-centered padding-bottom30">
+                                        <ul class="pagination">
+                                            <li class="disabled"><a href="#">«</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Products End -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /Main Section -->
+            <?php include 'footer.php';?>
+                    <!-- Footer Bottom -->
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 ">
+                                    <p class="credits">&copy; Copyright 2014 by <a href="#">FIFOLAB</a>. All Rights Reserved. </p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 ">
+                                    <ul class="social social-icons-footer-bottom">
+                                        <li class="facebook"><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li class="twitter"><a href="#" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li class="dribbble"><a href="#" data-toggle="tooltip" title="Dribble"><i class="fa fa-dribbble"></i></a></li>
+                                        <li class="linkedin"><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                        <li class="rss"><a href="#" data-toggle="tooltip" title="Rss"><i class="fa fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Footer Bottom --> 
+                    <!-- /Footer Bottom --> 
+                </div>
+            </footer>
+            <!-- Modal -->
+            <section id="modals">
+                <!-- Login Modal -->
+                <div class="modal login fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="form-signin-heading modal-title" id="myModalLabel">Login</h2>
+                            </div>
+                            <form method="post" id="login">
+                                <div class="modal-body">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <input class="form-control" id="username" name="username" type="text" placeholder="Username" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <input class="form-control" type="email" id="email" name="email" placeholder="Email" value="" required>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="password-recovery.html" class="pull-left">(Lost Password?)</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-color">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Login Modal -->
+                <!-- Registration Modal -->
+                <div class="modal register fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h2 class="form-signin-heading modal-title" id="registrationModalLabel">Create a new account</h2>
+                        </div>
+                        <form method="post" id="registration">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="text" value="" class="form-control" placeholder="First Name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" value="" class="form-control" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <input type="text" value="" class="form-control" placeholder="E-mail Address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="password" value="" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="password" value="" class="form-control" placeholder="Re-enter Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-color">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Registration Modal -->
+            </section>
+            <!-- Scroll To Top --> 
+            <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
         </div>
-        <br><br>
-
-      </div>
-    </div>
-    <div class="parallax"><img src="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/background2.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/background3.jpg" alt="Unsplashed background img 3"></div>
-  </div>
-
-  <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/js/materialize.js"></script>
-  <script src="<?PHP ECHO Ap_BASE_URL ?>public_/<?PHP ECHO Ap_TEMA_WEB ?>/js/init.js"></script>
-
-  </body>
+        <!-- /Wrap -->
+        <section id="style-switcher" style="left: 0px;">
+            <h2>Mercafuller <a href="#"><i class="fa fa-bars"></i></a></h2>
+            <!-- Category Widget Start -->
+                                <div class="widget category">
+                                    <h3 class="title">Categories</h3>
+                                    <ul class="category-list slide">
+                                        <li><a href="#">Games & Software</a></li>
+                                        <li><a href="#">Mobile & Computers</a></li>
+                                        <li><a href="#">Fashion</a></li>
+                                        <li><a href="#">Books & Audio</a></li>
+                                        <li><a href="#">Kids & Toys</a></li>
+                                        <li><a href="#">Sports</a></li>
+                                    </ul>                                    
+                                </div>
+                                <!-- /Category Widget End -->
+        </section>
+        <!-- The Scripts -->
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery-migrate-1.0.0.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery-ui.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/bootstrap.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/revolution-slider/js/jquery.themepunch.plugins.min.js"></script> 
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.parallax.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.wait.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/fappear.js"></script> 
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/modernizr-2.6.2.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.bxslider.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.prettyPhoto.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/superfish.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/tweetMachine.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/tytabs.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.gmap.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.sticky.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.countTo.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jflickrfeed.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/imagesloaded.pkgd.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/waypoints.min.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/wow.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.fitvids.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/spectrum.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/switcher.js"></script>
+        <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/custom.js"></script>
+    </body>
 </html>

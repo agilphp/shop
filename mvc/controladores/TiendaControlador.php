@@ -44,7 +44,7 @@ class TiendaControlador extends Sisnuc\APControlador
 {
 	public function index()
     {
-        $this->_vista->titulo = 'Inicio a la tienda';
+        $this->_vista->titulo = 'EfraShop';
         $this->_vista->error  = 'Se presento un error';
         $this->_vista->imprimirVista('index', 'tienda');
     }

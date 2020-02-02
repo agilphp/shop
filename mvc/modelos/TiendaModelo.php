@@ -15,4 +15,20 @@ class TiendaModelo extends sistema\nucleo\APModelo
         return $sMenu = $this->_bd->resultset();
 
     }
+
+    public function cargarProductosFlag()
+    {
+        $gProductos = $this->_bd->consulta('SELECT producto_id, codigo, nombre, imagen, precio, detalle, clase FROM tblproductos where flag =1 ');
+
+        $gProductos        = $this->_bd->ejecucion();
+        return $gProductos = $this->_bd->resultset();
+    }
+
+    public function cargarProductos()
+    {
+        $gProductos = $this->_bd->consulta('SELECT producto_id, codigo, nombre, imagen, precio, detalle, clase FROM tblproductos where flag =0 ');
+
+        $gProductos        = $this->_bd->ejecucion();
+        return $gProductos = $this->_bd->resultset();
+    }
 }

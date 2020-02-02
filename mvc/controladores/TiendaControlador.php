@@ -40,9 +40,13 @@ class TiendaControlador extends Sisnuc\APControlador
     public function index()
     {
         $this->_vista->titulo = 'EfraShop';
-        $sMenu                = $this->cargaModelo('tienda');
+        $gtienda              = $this->cargaModelo('tienda');
+
+        $this->_vista->menu            = $gtienda->cargarMenu();
+
+        $this->_vista->promoProductosF = $gtienda->cargarProductosFlag();
         
-        $this->_vista->menu   = $sMenu->cargarMenu();       
+        $this->_vista->promoProductos  = $gtienda->cargarProductos();
 
         $this->_vista->imprimirVista('index', 'tienda');
     }

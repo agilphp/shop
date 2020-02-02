@@ -22,11 +22,13 @@ return array(
     'Sirius\\Upload\\' => array($vendorDir . '/siriusphp/upload/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'PhpOffice\\PhpSpreadsheet\\' => array($vendorDir . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet'),
     'PHPTools\\PHPErrorLog\\' => array($vendorDir . '/elmijo/php-error-log/src/PHPErrorLog'),
     'PHPTools\\PHPClientAddr\\' => array($vendorDir . '/elmijo/php-cliente-addr/src/PHPClientAddr'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Matrix\\' => array($vendorDir . '/markbaker/matrix/classes/src'),
     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
+    'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
 );

@@ -25,8 +25,8 @@ class usuarioModelo extends sistema\nucleo\APModelo
         //echo DB_HOST;
         
         //$datosQuery="select usuario, email, nivel from usuarios where usuario = :usuario";
-        $gsent=$this->_bd->consulta('select id_usuario, nombre, email, nivel, rolId, menuId from usuarios where email = :email and clave = :clave');
-        $gsent=$this->_bd->enlace(':email', $email);
+        $gsent=$this->_bd->consulta('select id_usuario, customer_name, customer_email,  rolId from Tblusuarios where customer_email = :customer_email and clave = :clave');
+        $gsent=$this->_bd->enlace(':customer_email', $email);
         $gsent=$this->_bd->enlace(':clave', $clave);
         //$gsent=$this->_bd->ejecucion();
         $row = $gsent=$this->_bd->single();
@@ -36,7 +36,7 @@ class usuarioModelo extends sistema\nucleo\APModelo
     
     public function insertarRegistro($nombre,  $email, $nivel, $clave){
         
-        $post=$this->_bd->consulta('INSERT INTO usuarios (nombre, email, nivel, clave) VALUES (:nombre, :email, :nivel, :clave)');
+        $post=$this->_bd->consulta('INSERT INTO Tblusuarios (nombre, email, nivel, clave) VALUES (:nombre, :email, :nivel, :clave)');
         
         $post=$this->_bd->enlace(':nombre',$nombre);
         $post=$this->_bd->enlace(':email', $email);

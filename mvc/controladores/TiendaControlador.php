@@ -37,17 +37,19 @@ use sistema\nucleo as Sisnuc;
 
 class TiendaControlador extends Sisnuc\APControlador
 {
+    //include 'Carrito.php';
     public function index()
     {
         $this->_vista->titulo = 'EfraShop';
         $gtienda              = $this->cargaModelo('tienda');
 
-        $this->_vista->menu            = $gtienda->cargarMenu();
+        $this->_vista->menu = $gtienda->cargarMenu();
 
         $this->_vista->promoProductosF = $gtienda->cargarProductosFlag();
-        
-        $this->_vista->promoProductos  = $gtienda->cargarProductos();
+
+        $this->_vista->promoProductos = $gtienda->cargarProductos();
 
         $this->_vista->imprimirVista('index', 'tienda');
     }
+
 }

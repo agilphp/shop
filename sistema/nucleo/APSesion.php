@@ -17,8 +17,8 @@
  * @category   
  * @package    sistema/nucleo
  * @copyright  Copyright (c) 2006 - 2014 webcol.net (http://www.webcol.net/calima)
- * @license	https://github.com/webcol/Calima/blob/master/LICENSE	MIT
- * @version	##BETA 1.0##, ##2014 - 2015##
+ * @license https://github.com/webcol/Calima/blob/master/LICENSE  MIT
+ * @version ##BETA 1.0##, ##2014 - 2015##
  * <http://www.calimaframework.com>.
  */
 /*
@@ -33,25 +33,25 @@
 namespace sistema\nucleo;
 class APSesion
 {   
-    
-    private $host       = AP_BD_HOST;
+
+private $host       = AP_BD_HOST;
     private $usuario    = AP_BD_USUARIO;
     private $clave      = AP_BD_CLAVE;
     private $bdnombre   = AP_BD_NOMBRE;
     private $bdchar     = AP_BD_CHAR;
     private $bdconector = AP_BD_CONECTOR;
-    
+
    public function __construct() {
-     // session_regenerate_id(true);
+       //session_regenerate_id(true);
          // set our custom session functions.
       session_set_save_handler(array($this, 'abrir'), array($this, 'cerrar'), array($this, 'leer'), array($this, 'escribir'), array($this, 'destruir'), array($this, 'gc'));
       // This line prevents unexpected effects when using objects as save handlers.
       register_shutdown_function('session_write_close');      
    }   
   /* public function __destruct() {
-      session_regenerate_id(false);
+      session_regenerate_id(true);
    }*/
-      function iniciarSesion($session_name, $secure) {
+         public  function iniciarSesion($session_name, $secure) {
       // Make sure the session cookie is not accessable via javascript.
       $httpunico = true;
 
@@ -78,11 +78,10 @@ class APSesion
       session_name($session_name);
       // Now we cat start the session
       session_start();
-      ob_start();
-     
+     ob_start();
       // This line regenerates the session and delete the old one. 
       // It also generates a new encryption key in the database. 
-       //session_regenerate_id(true);
+       
    }
 
 // ingrese la informacion de conexion a su base de datos, debe ser igual a la que esta en CFConfiguracion.php

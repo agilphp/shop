@@ -72,21 +72,21 @@ class CarritoControlador extends Sisnuc\APControlador
 
         $this->_vista->menu = $gtienda->cargarMenu();
 
-        $this->_vista->itensC = array_values($this->get_content()); 
-        
+        $this->_vista->itensC = array_values($this->get_content());
+
         $this->_vista->imprimirVista('carrito', 'carrito');
     }
 
     public function checkOut()
     {
-       $this->_vista->titulo = 'EfraShop';
+        $this->_vista->titulo = 'EfraShop';
         $gtienda              = $this->cargaModelo('tienda');
 
         $this->_vista->menu = $gtienda->cargarMenu();
 
-        $this->_vista->itensC = array_values($this->get_content()); 
-        
-        $this->_vista->imprimirVista('checkout', 'carrito'); 
+        $this->_vista->itensC = array_values($this->get_content());
+
+        $this->_vista->imprimirVista('checkout', 'carrito');
     }
 
     public function inicio()

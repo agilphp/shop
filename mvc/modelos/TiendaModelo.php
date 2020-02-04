@@ -56,7 +56,11 @@ class TiendaModelo extends sistema\nucleo\APModelo
             $post = $this->_bd->enlace(':tblusuarios_id_usuario', $tblusuarios_id_usuario);
             $post = $this->_bd->enlace(':tblstatusorder_status_order_id', $tblstatusorder_status_order_id);
 
-            $post = $this->_bd->ejecucion();
+            $post      = $this->_bd->ejecucion();
+            $insert_id = $this->_bd->lastInsertId();
+
+            return $insert_id;
+
         } catch (Exception $e) {
             echo $e->getMessage();
             die();

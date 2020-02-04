@@ -99,14 +99,14 @@ class CarritoControlador extends Sisnuc\APControlador
 
         $sUsuario->registrarUsuarioM($_POST['nombre'], $_POST['email'], $_POST['identificacion'], $_POST['movil']);
 
-        $sTienda->registrarOrdenM();
+        $order_id = $sTienda->registrarOrdenM();
 
         $itens = array_values($this->get_content());
 
-       /* echo "<pre>";
+        /* echo "<pre>";
         print_r($itens);
         echo "<pre>";exit();*/
-        $order_id=1;
+        //$order_id=1;
 
         foreach ($itens as $itens_user => $val) {
 

@@ -71,9 +71,11 @@ class CarritoControlador extends Sisnuc\APControlador
         $gtienda              = $this->cargaModelo('tienda');
 
         $this->_vista->menu = $gtienda->cargarMenu();
-
-        $this->_vista->itensC = array_values($this->get_content());
-
+        if ($this->get_content()) {
+            $this->_vista->itensC = array_values($this->get_content());
+        } else {
+            $this->_vista->itensC = 0;
+        }
         $this->_vista->imprimirVista('carrito', 'carrito');
     }
 
@@ -87,6 +89,30 @@ class CarritoControlador extends Sisnuc\APControlador
         $this->_vista->itensC = array_values($this->get_content());
 
         $this->_vista->imprimirVista('checkout', 'carrito');
+    }
+
+    public function registrarUsuario()
+    {
+        $sTienda = $this->cargaModelo('tienda');
+
+        $sUsuario = $this->cargaModelo('usuario');
+
+        $sUsuario->registrarUsuarioM($_POST['nombre'], $_POST['email'], $_POST['identificacion'], $_POST['movil']);
+
+        $sTienda->registrarOrdenM();
+
+        $itens = array_values($this->get_content());
+
+       /* echo "<pre>";
+        print_r($itens);
+        echo "<pre>";exit();*/
+        $order_id=1;
+
+        foreach ($itens as $itens_user => $val) {
+
+            $sTienda->registrarDetallesM($order_id, $val['id'], $val['cantidad'], $val['precio']);
+
+        }
     }
 
     public function inicio()
@@ -406,7 +432,7 @@ class CarritoControlador extends Sisnuc\APControlador
         unset($_SESSION["carrito"]);
         $this->carrito = null;
         //return true;
-        $this->_ayuda->redireccionUrl('carrito/compraSeguraLogin');
+        $this->_ayuda->redireccionUrl('tienda/index');
     }
 
     public function destroyCart()

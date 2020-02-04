@@ -305,7 +305,7 @@
         <!-- Title with number of items in shopping kart -->
           <h3 class="title"><i class="icon-shopping-cart"></i> Items en el carro </h3>
             <br />            
-            <?php foreach ($this->itensC as $itens_user => $val) { ?>
+            <?php if($this->itensC) { foreach ($this->itensC as $itens_user => $val) { ?>
             <!-- Table -->
               <table class="table table-striped tcart">
                 <thead>
@@ -344,7 +344,7 @@
                   
                 </tbody>
               </table>
-            <?php } ?>
+            <?php }} ?>
 
               <form class="form-inline">
               <!-- Discount Coupen -->

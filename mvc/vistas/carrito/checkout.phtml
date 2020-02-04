@@ -312,26 +312,33 @@
           <!-- Address and Shipping details form -->
             <div class="form form-small">
                                       <!-- Register form (not working)-->
-                                      <form class="form-horizontal">
+                                      <form method="post" action="registrarUsuario" name="formulario1" class="form-horizontal">
                                           <!-- Name -->
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="name1">Nombre</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="name1">
+                                              <input required type="text" class="form-control" name="nombre" id="nombre">
                                             </div>
                                           </div>   
                                           <!-- Email -->
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="email1">Email</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="email1">
+                                              <input required type="text" class="form-control" name="email" id="email">
                                             </div>
                                           </div>
+                                          <!-- Identificacion -->
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="telephone">Identificación</label>
+                                            <div class="col-md-6">
+                                              <input required type="text" class="form-control" name="identificacion" id="identificacion">
+                                            </div>
+                                          </div> 
                                           <!-- Telephone -->
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="telephone">Móvil</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="telephone">
+                                              <input required type="text" class="form-control" name="movil" id="movil">
                                             </div>
                                           </div>  
                                           <!-- Address -->
@@ -608,42 +615,13 @@
                                     </div>
 
                                     <hr />
-
-
-      <!-- Payment details section -->
-        <!-- Title -->
-          <h5 class="title">Payment Details</h5>
-
-          <!-- Radio buttons to select payment type -->
-
-          <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
-            Debit Card
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
-            Credit Card
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios3" value="3">
-            Internet Banking
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios4" value="4">
-            Cash On Delivery
-          </label>          
-          <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios5" value="5">
-            Paypal
-          </label>                    
-
-          <hr />
+      
 
           <!-- Confirm order button -->
               <div class="row">
                 <div class="col-md-4 col-md-offset-8">
                   <div class="pull-right">
-                    <a href="checkout.html" class="btn btn-danger">Confirmar Orden</a>
+                    <a href="javascript:enviar_formulario()" class="btn btn-danger">Confirmar Orden</a>
                   </div>
                 </div>
               </div>
@@ -775,6 +753,11 @@
 
 <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.carouFredSel-6.1.0-packed.js"></script> <!-- Carousel for recent posts -->
 <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/custom.js"></script> <!-- Custom codes -->
+<script>
+function enviar_formulario(){
+   document.formulario1.submit()
+}
+</script>
 
 </body>
 </html>

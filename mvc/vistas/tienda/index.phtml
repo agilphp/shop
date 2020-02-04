@@ -66,7 +66,7 @@
             <span>
 
               <!-- item details with price -->
-              <a href="#cart" role="button" data-toggle="modal">3 Item(s) En Tu <i class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>  
+              <a href="<?PHP ECHO Ap_BASE_URL ?>carrito/listar" role="button" data-toggle="modal">Item(s) En Tu <i class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>  
 
             </span>
 
@@ -284,49 +284,12 @@
                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                  <ul class="nav navbar-nav">
                    <li><a href="index.html"><i class="icon-home"></i></a></li>
-                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="myaccount.html">My Account</a></li>
-                        <li><a href="view-cart.html">View Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="wish-list.html">Wish List</a></li>
-                        <li><a href="order-history.html">Order History</a></li>
-                        <li><a href="edit-profile.html">Edit Profile</a></li>
-                        <li><a href="confirmation.html">Confirmation</a></li>
-                      </ul>
-                   </li>                   
-                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="general.html">General</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="404.html">404</a></li>
-                      </ul>
-                   </li>
-                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Smartphones <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="items.html">HTC</a></li>
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Apple</a></li>
-                        <li><a href="items.html">Motorola</a></li>
-                        <li><a href="items.html">Nokia</a></li>
-                      </ul>
-                   </li>
-                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tablets <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Micromax</a></li>
-                        <li><a href="items.html">Apple</a></li>
-                      </ul>
-                   </li>                                      
-                   <li><a href="support.html">Support</a></li>
-                   <li><a href="contact.html">Contact</a></li>
+                    <?php foreach ($this->menu as $menu_user) { ?>
+
+                        <li><a href="<?PHP ECHO Ap_BASE_URL ?><?php echo $menu_user['url'];  ?>"><?php echo $menu_user['nombre'];  ?></a></li>
+
+                   
+                  <?php  }   ?>
                  </ul>
                </nav>
               </div>
@@ -407,52 +370,25 @@
 <div class="promo">
   <div class="container">
     <div class="row">
-      <!-- Red color promo box -->
+      <!-- recorremos los tres productos promo -->
+     <?php foreach ($this->promoProductosF as  $pProductosF) { ?>
       <div class="col-md-4">
         <!-- rcolor =  Red color -->
-        <div class="pbox rcolor">
+        <div class="<?php echo $pProductosF['clase'];  ?>">
           <div class="pcol-left">
             <!-- Image -->
-            <a href="items.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/promo-1.png" alt="" /></a>
+            <a href="<?PHP ECHO Ap_BASE_URL ?>/carrito/addProducto/?id=<?php echo $pProductosF['producto_id'];  ?>&nombre=<?php echo $pProductosF['nombre'];  ?>&precio=<?php echo $pProductosF['precio'];  ?>&cantidad=1"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/productos/<?php echo $pProductosF['imagen'];  ?>" alt="" /></a>
           </div>
           <div class="pcol-right">
             <!-- Title -->
-            <p class="pmed"><a href="items.html">HTC One</a></p>
+            <p class="pmed"><a href="items.html"><?php echo $pProductosF['nombre'];  ?></a></p>
             <!-- Para -->
-            <p class="psmall"><a href="items.html">Buy HTC Phones just for $250. Cheap. Dont miss this offer. Keep it checking for more.</a></p>
+            <p class="psmall"><a href="items.html"><?php echo $pProductosF['detalle'];  ?>.</a></p>
           </div>
           <div class="clearfix"></div>
         </div>
       </div>
-      <!-- Blue color promo box -->
-      <div class="col-md-4">
-        <!-- bcolor =  Blue color -->
-        <div class="pbox bcolor">
-          <div class="pcol-left">
-            <a href="items.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/promo-2.png" alt="" /></a>
-          </div>
-          <div class="pcol-right">
-            <p class="pmed"><a href="items.html">Blackberry</a></p>
-            <p class="psmall"><a href="items.html">Buy Blackberry phones just for $250. Dont miss this offer. Keep it checking for more.</a></p>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-      <!-- Green color promo box -->
-      <div class="col-md-4">
-        <!-- gcolor =  Green Color -->
-        <div class="pbox gcolor">
-          <div class="pcol-left">
-            <a href="items.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/promo-3.png" alt="" /></a>
-          </div>
-          <div class="pcol-right">
-            <p class="pmed"><a href="items.html">Nokia Lumia</a></p>
-            <p class="psmall"><a href="items.html">Buy Nokia Lumia Phones just for $200. Dont miss  offer. Keep it checking for more.</a></p>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-
+      <?PHP } ?>
     </div>
   </div>
 </div>
@@ -468,94 +404,31 @@
         <h3 class="title">Populares</h3>
       </div>
       <!-- Item #1 -->
+      <?php foreach ($this->promoProductos as  $pProductos) { ?>
       <div class="col-md-3 col-sm-4">
         <div class="item">
           <!-- Item image -->
           <div class="item-image">
-            <a href="#single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/2.png" alt="" /></a>
+            <a href="#single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/productos/<?php echo $pProductos['imagen'];  ?>" alt="" /></a>
           </div>
           <!-- Item details -->
           <div class="item-details">
             <!-- Name -->
             <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
-            <h5><a href="#single-item.html">HTC One V</a><span class="ico"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/hot.png" alt="" /></span></h5>
+            <h5><a href="#single-item.html"><?php echo $pProductos['nombre'];  ?></a><span class="ico"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/hot.png" alt="" /></span></h5>
             <div class="clearfix"></div>
             <!-- Para. Note more than 2 lines. -->
-            <p>Something about the product goes here. Not More than 2 lines.</p>
+            <p><?php echo $pProductos['detalle'];  ?>.</p>
             <hr />
             <!-- Price -->
-            <div class="item-price pull-left">$360</div>
+            <div class="item-price pull-left">$<?php echo $pProductos['precio'];  ?></div>
             <!-- Add to cart -->
             <div class="button pull-right"><a href="#">Agregar al Carro</a></div>
             <div class="clearfix"></div>
           </div>
         </div>
-      </div>
-      <!-- Item #2 -->
-      <div class="col-md-3 col-sm-4">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="#single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/3.png" alt="" /></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="#single-item.html">Dell One V</a></h5>
-            <!-- Para. Note more than 2 lines. -->
-            <p>Something about the product goes here. Not More than 2 lines.</p>
-            <hr />
-            <!-- Price -->
-            <div class="item-price pull-left">$264</div>
-            <!-- Add to cart -->
-            <div class="button pull-right"><a href="#">Agregar al Carro</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>  
-      <div class="col-md-3 col-sm-4">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="#single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/4.png" alt="" /></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="#single-item.html">Cannon One V</a><span class="ico"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/new.png" alt="" /></span></h5>
-            <!-- Para. Note more than 2 lines. -->
-            <p>Something about the product goes here. Not More than 2 lines.</p>
-            <hr />
-            <!-- Price -->
-            <div class="item-price pull-left">$160</div>
-            <!-- Add to cart -->
-            <div class="button pull-right"><a href="#">Agregar al Carro</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="#single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/photos/5.png" alt="" /></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="#single-item.html">Apple One V</a><span class="ico"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/deal.png" alt="" /></span></h5>
-            <!-- Para. Note more than 2 lines. -->
-            <p>Something about the product goes here. Not More than 2 lines.</p>
-            <hr />
-            <!-- Price -->
-            <div class="item-price pull-left">$420</div>
-            <!-- Add to cart -->
-            <div class="button pull-right"><a href="#">Agregar al Carro</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>                                                              
-
+      </div> 
+     <?php } ?>
     </div>
   </div>
 </div>

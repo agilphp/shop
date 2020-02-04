@@ -15,37 +15,41 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license. For more information, see
- * @category   
+ * @category
  * @package    sistema/nucleo
  * @copyright  Copyright (c) 2006 - 2014 webcol.net (http://www.webcol.net/calima)
- * @license	https://github.com/webcol/Calima/blob/master/LICENSE	MIT
- * @version	##BETA 1.0##, ##2014 - 2015##
+ * @license    https://github.com/webcol/Calima/blob/master/LICENSE    MIT
+ * @version    ##BETA 1.0##, ##2014 - 2015##
  * <http://www.AgilPhp.com>.
  */
 
-
 //verificamos la version de php en tu servidor web o local
-if (version_compare(PHP_VERSION, '5.3.20', '<'))
-{
-	die('Su Hosting tiene una version < a PHP 5.3.20 debes actualizar para esta version de Calima. su version actual de PHP es: '.PHP_VERSION);
+if (version_compare(PHP_VERSION, '5.3.20', '<')) {
+    die('Su Hosting tiene una version < a PHP 5.3.20 debes actualizar para esta version de Calima. su version actual de PHP es: ' . PHP_VERSION);
 }
 
 //Cargamos los Espacios de nombres para el nucleo y los ayudantes
 //Utilizamos un alias
 
-
 use sistema\nucleo as Sisnuc;
-use sistema\ayudantes as Sisayu;
+
 //use vendor\bin\
 
-
-
-class TiendaControlador extends Sisnuc\APControlador 
+class TiendaControlador extends Sisnuc\APControlador
 {
-	public function index()
+    //include 'Carrito.php';
+    public function index()
     {
         $this->_vista->titulo = 'EfraShop';
-        $this->_vista->error  = 'Se presento un error';
+        $gtienda              = $this->cargaModelo('tienda');
+
+        $this->_vista->menu = $gtienda->cargarMenu();
+
+        $this->_vista->promoProductosF = $gtienda->cargarProductosFlag();
+
+        $this->_vista->promoProductos = $gtienda->cargarProductos();
+
         $this->_vista->imprimirVista('index', 'tienda');
     }
+
 }

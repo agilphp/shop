@@ -62,9 +62,9 @@ class usuarioControlador extends \sistema\nucleo\APControlador
                 $this->_sesion->iniciarSesion('_s', Ap_SESION_PARAMETRO_SEGURO);
                 $_SESSION['usuario']    = $usuario;
                 $_SESSION['id_usuario'] = $valida['id_usuario'];
-                echo $_SESSION['nivel'] = $valida['nivel'];
-                $_SESSION['roll']       = $valida['rolId'];
-                $_SESSION['menu']       = $valida['menuId']; //exit();
+                
+               echo $_SESSION['roll']       = $valida['rolId'];
+                
                 $this->_ayuda->redireccionUrl('dashboard/index');
             }
             $this->_ayuda->redireccionUrl('usuario');

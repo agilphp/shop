@@ -96,6 +96,7 @@ class ComposerStaticInit374a5bdd798cc5d04031211e419aa88b
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'PhpOption\\' => 10,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
             'PHPTools\\PHPErrorLog\\' => 21,
             'PHPTools\\PHPClientAddr\\' => 23,
@@ -108,6 +109,10 @@ class ComposerStaticInit374a5bdd798cc5d04031211e419aa88b
         'L' => 
         array (
             'League\\Csv\\' => 11,
+        ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
         ),
         'C' => 
         array (
@@ -180,6 +185,10 @@ class ComposerStaticInit374a5bdd798cc5d04031211e419aa88b
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
@@ -203,6 +212,10 @@ class ComposerStaticInit374a5bdd798cc5d04031211e419aa88b
         'League\\Csv\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/csv/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Complex\\' => 
         array (

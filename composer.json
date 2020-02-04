@@ -46,7 +46,8 @@
                 "siriusphp/upload": "2.*",                                
 				"monolog/monolog":  "*",
 				"elmijo/php-error-log": "2.0",
-                "smottt/wideimage": "*"                
+                "smottt/wideimage": "*",
+                "vlucas/phpdotenv": "*"               
 	},
          
         

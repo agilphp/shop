@@ -37,6 +37,20 @@ use sistema\nucleo as Sisnuc;
 
 class TiendaControlador extends Sisnuc\APControlador
 {
+
+    private $_ayuda;
+    private $_seg;
+    private $_sesion;
+    public function __construct()
+    {
+        parent::__construct();
+
+        // cargamos la clase ayudantes para usar sus metodos de ayuda
+        $this->_ayuda  = new sistema\ayudantes\APPHPAyuda;
+        $this->_seg    = new sistema\ayudantes\APPHPSeguridad;
+        $this->_sesion = new sistema\nucleo\APSesion();
+    }
+
     //include 'Carrito.php';
     public function index()
     {
@@ -50,6 +64,22 @@ class TiendaControlador extends Sisnuc\APControlador
         $this->_vista->promoProductos = $gtienda->cargarProductos();
 
         $this->_vista->imprimirVista('index', 'tienda');
+    }
+
+    public function listarOrdenes()
+    {
+       $this->_sesion->iniciarSesion('_s', Ap_SESION_PARAMETRO_SEGURO);
+       
+        $this->_vista->titulo = 'Listar las ordenes de compra';
+        $gOrdenes             = $this->cargaModelo('tienda');
+
+        $this->_vista->menu = $gOrdenes->cargarMenu();
+
+       if (isset($_SESSION['id_usuario'])) {
+            $this->_vista->getOrdenes = $gOrdenes->cargarOrdenes();
+        }
+
+        $this->_vista->imprimirVista('listar_ordenes', 'tienda');
     }
 
 }

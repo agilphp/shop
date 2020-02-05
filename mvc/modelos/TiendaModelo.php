@@ -46,6 +46,39 @@ class TiendaModelo extends sistema\nucleo\APModelo
         }
     }
 
+    public function cargarOrdenes()
+    {
+        try {
+            $gOrdenes = $this->_bd->consulta('
+                SELECT
+                usu.id_usuario,
+                usu.customer_name as nombre_usuario,
+                usu.customer_email,
+                ord.order_id,
+                est.nombre as nombre_estado,
+                sum(dord.cantidad) as cantidad,
+                sum(dord.precio) as precio
+               
+
+                FROM tblordenes as ord
+                        INNER JOIN tbldetalle_orden as dord
+                              ON ord.`order_id` = dord.tblorders_order_id
+                        INNER JOIN tblusuarios  as usu
+                              ON ord.tblusuarios_id_usuario = usu.id_usuario
+                        INNER JOIN tblestado_orden  as est
+                              ON ord.tblstatusorder_status_order_id  = est.status_order_id
+                              group by (dord.detalle_id)
+                       
+  ');
+
+            $gOrdenes        = $this->_bd->ejecucion();
+            return $gOrdenes = $this->_bd->resultset();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
     public function registrarOrdenM()
     {
         try {

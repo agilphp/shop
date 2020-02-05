@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 03, 2020 at 12:49 PM
+-- Generation Time: Feb 05, 2020 at 11:04 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.0.33
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `sesiones` (
 --
 
 INSERT INTO `sesiones` (`id`, `set_time`, `data`, `session_key`) VALUES
-('ffs4bo9kjnp1uq78tbdpr6knihmfe4jo9aa1qcdcs5juggkutlje88h1s0gtcohr9kjfdpaavni0dbviflhb7merd349rdiaapjmst3', '1580695321', 'cnbzPH4yvas/QTtWRwMDxWlH0oN92Sc3Fq7l2LZ/mkLoe7hp5R4OOEYk3LKA9EDrEMELyDbeQczh5RtPkaoVNo074W4/jXHzO7OTUjVzdn/eN3Wzy3yKmNguy1Mf27NNrJeFzPpscRXocwwUkrKIUaGTJ1s44Es6tddTYdrRrbEYAeLGuzoTyX9LqZsL1NsyYuPE1pb8b2O+/Dbh78PeEzgPVVqVg8ZMF5ecdGWxZb1gQzlonXPcht2I+ooNIXhscwpfHdMkXDZGSU+igMWFgPAmxTMO83PmkHp0CznZMXaTlJKrtebonIyQgEyBbCRQrKHffzsKe7mprjPzucejYzAsbx3EVuilnJAAVRULYgjngGC+SPl1dwZ2p0z7FmMK/KXalxsKoFVIyvHLo20H2BjGs2VU61aM6T8Yz9y8qG2p5/KHiopLZ9aVmikuIAjoTZYRn00Gley485ijFvMWneREA8NxhcYzvuHFQvUrzAYccuwvnklWVIKNIDsyIxSM290EBLotdZ3QtZHYGWkI7Qm2WM4t1Gbhvv3tbWJ2oJh+KdvUCoiJQ7J5oP6QjFBvPDlIfiTLr2wNyM3PxmzJhZujmJhqUtWOJJ4ukkrJlIQZdjqQRGMmmvYGCfw5GN0o5OfaKohMv6smALvjbghwN72STFbQRq1qbRr2DVwiUmA4VDJ7ruSgCE337CtDSGzPGSbK9gK20/gDFyauDfpVbPJSDf3t66HGjUaG6EaX1uGIjkBfGBhTq4eu4toYuKrB2il8ffW5u/Dm9sd7oix714wyh71hsnl1ci7MeAQwVuWSwIoL19mwPH37ANTG3ov4QqeqwDTHq5gormOsSluSygk/+N8ZM5KsXuKSxtAjtwbWPpea8aLceZkgSBpvGo+XUCNGs0XesPs4a3Vbrx55kkGiQZrJpUI5Ht8LuqabgJP0gzsJrL1JWREMQ0ZmOksZDPpnbKbqMkKkT353cmhRsSdunI4ZCIl5njMgZbLyCjVpja+xANu8pKl+naCIaZmTHthRB7TZVsrFOPtNw9rCzF0FvG64LkGQuyr6CUdqPUid2r8Zw4kDWddzQ76x1o9NeF/Z3oLRksuykwn1OGixHgNMr/qpbvUzlEoaEzdFUYNZwdemimasHsn4+iCnkiaWfhAGFHnwM5CQW+fm+TYzklINhBaGbJN98UK3+RKXgdb5jvZqyiwZmPBjD+24SETuqQ6uKE55agUy8NzsgVrU8knfwC5jZ+yTbA4HrZBubJ9rCa615oKAYbUFz7K3te6x7VCNs57OGkVE+SA4p7o/YlX7u8+oH2kaITz/tiqo2s9YAHuQr65zniXVEZfmEtks4GDqXjPghnAC+LboYtfmlgTq3rWBoWiYORRK/pYphPyf1CeFQU1wxGeDoWqbFIhC', 'f5468e36d9cb860ff183ecbee46f7fa8e5c0cac54bf9a6d0f48a712604d1437ff55ebe0d12e4c76502c6a1352ef75ddc5d1ab8d749cb3aea00b7c0a95b0bff94');
+('ffs4bo9kjnp1uq78tbdpr6knihmfe4jo9aa1qcdcs5juggkutlje88h1s0gtcohr9kjfdpaavni0dbviflhb7merd349rdiaapjmst3', '1580872503', 'qqqsH69DyGUa5sfNEE5isZV275wvCAskjJATLk0MCiPNWgw8pkmjtPS1mCtLBxWO/EI+XRJtu57Pk/zi2YmWCTZC69jb5MAjiM7iUS2lr9IoDTYVqUfv6lCESL0nQC2YLEtY31e0ZdvbMwEEALSkY9Ktix4Bh4E4E4QZKyMl7eN3BOd2DnO9UQqT1pf7jRWzdHftZy7sTEOSpvCf6SStGSKeROSfma6h/h5QNgNj2sQsLGpqpqINL8YA0usGyR6q1qWMOciFNS2zCFLdQ4aPbB1IEfK9ZKnkha0AKA/NrfwtB26nW2O+nlHs9EaMowwViMZ4xf5bnpPmIwxF3CbVaehJ5wumxPSBpUmm8EniFiYmK0BYrpZEut2F4p1MpqdnQLSxj7PGw+kpDAdWsoWtWEHuq5fz9kgy2koGXyJNpHXQtImZnXFyh3Rti4+3lghMGHtKcLM9FunjWYnwxQ+/FiAPJKsQWk6dXYttN36cFSCGMK1OcLi4ymapNMsvDALk07m7swZa4K7f+SMq5UUBbd/GVZu09L9yc8xux8R1pADYIbpUjuCGYYLJGA1Z/PGkegqcmQt9+9cbEMIAiRK7/CTCNT3DqAt8jNn3F8Ha9RYmoVaQXMDwT6oflPYEFaq3qUfjSwAPMQMG0KmaJqFjjsAprSSKDIXQ4iFeNXZX4FCIVS84OPe41pKA7aRYkIPqrUGl2aOweYe14f1Op0gp4nuCERcE5xogjpT5Agrxw0O0wcDFoGjKK4F+BA1rMCeN2Wf3DBmZK1tOMcTlB+b6HIj9NKPdxzE7qDJchX2v1tOO1rWYkuSsbjvIeGP5of9z5Bcu2Eefr1T9l7GIH0N1GdBx/LrqDUgfh6rYb3o4cZIrNY5UkX4fVD9vvQNow61pm1GVmxNLZkyU2VfDZmZOH7W3qMQOvFmnbUmsfEmk2cKhKCWJDTaKKFpb8sE5o1ULZOlMRxjWoJFPiEwBesard0kKuLS3RDXQ/DXVjkMSMqskHJH19gZ/xKdnrf9MhmU0/PKSGgkRMc31hx1i+REEkJ2LUWDUxap2qFGhittrbKNdWN1fvC8WT5D0/ciiwoWQUl9lJjhAk9Q3naT/XADLOw==', 'f5468e36d9cb860ff183ecbee46f7fa8e5c0cac54bf9a6d0f48a712604d1437ff55ebe0d12e4c76502c6a1352ef75ddc5d1ab8d749cb3aea00b7c0a95b0bff94');
 
 -- --------------------------------------------------------
 
@@ -74,14 +74,25 @@ INSERT INTO `tblcategoria` (`linea_Id`, `codigo`, `nombre`, `descripcion`) VALUE
 
 DROP TABLE IF EXISTS `tbldetalle_orden`;
 CREATE TABLE IF NOT EXISTS `tbldetalle_orden` (
+  `detalle_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tblorders_order_id` bigint(20) NOT NULL,
   `tblproductos_producto_Id` bigint(20) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `precio` float DEFAULT NULL,
   `descuento` float DEFAULT NULL,
+  PRIMARY KEY (`detalle_id`),
   KEY `fk_table1_tblorders1_idx` (`tblorders_order_id`),
   KEY `fk_table1_tblproductos1_idx` (`tblproductos_producto_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Dumping data for table `tbldetalle_orden`
+--
+
+INSERT INTO `tbldetalle_orden` (`detalle_id`, `tblorders_order_id`, `tblproductos_producto_Id`, `cantidad`, `precio`, `descuento`) VALUES
+(1, 3, 3, 1, 250, NULL),
+(2, 3, 4, 1, 120, NULL),
+(3, 3, 5, 1, 800, NULL);
 
 -- --------------------------------------------------------
 
@@ -94,7 +105,16 @@ CREATE TABLE IF NOT EXISTS `tblestado_orden` (
   `status_order_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`status_order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Tabla para relacionar con las ordenes de compra';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Tabla para relacionar con las ordenes de compra';
+
+--
+-- Dumping data for table `tblestado_orden`
+--
+
+INSERT INTO `tblestado_orden` (`status_order_id`, `nombre`) VALUES
+(1, 'CREATED'),
+(2, 'PAYED'),
+(3, 'REJECTED');
 
 -- --------------------------------------------------------
 
@@ -111,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `tblitems` (
   `clase` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`itemsid`),
   KEY `menuid` (`menuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Dumping data for table `tblitems`
@@ -119,7 +139,8 @@ CREATE TABLE IF NOT EXISTS `tblitems` (
 
 INSERT INTO `tblitems` (`itemsid`, `menuid`, `nombre`, `url`, `clase`) VALUES
 (1, 2, 'Inicio', 'index', ''),
-(2, 2, 'Carrito', 'carrito/listar', '');
+(2, 2, 'Carrito', 'carrito/listar', ''),
+(3, 2, 'Mis Ordenes', 'tienda/listarOrdenes', '');
 
 -- --------------------------------------------------------
 
@@ -153,17 +174,21 @@ INSERT INTO `tblmenu` (`menuId`, `menu`, `url`, `estado`) VALUES
 DROP TABLE IF EXISTS `tblordenes`;
 CREATE TABLE IF NOT EXISTS `tblordenes` (
   `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usuario_id` bigint(20) NOT NULL,
-  `status_order_id` int(11) NOT NULL,
-  `producto_id` bigint(20) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tblstatusorder_status_order_id` int(11) NOT NULL,
   `tblusuarios_id_usuario` bigint(20) NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `fk_tblorders_tblstatusorder1_idx` (`tblstatusorder_status_order_id`),
   KEY `fk_tblorders_tblusuarios1_idx` (`tblusuarios_id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Tabla que guarda todas las ordenes creadas por los clientes';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Tabla que guarda todas las ordenes creadas por los clientes';
+
+--
+-- Dumping data for table `tblordenes`
+--
+
+INSERT INTO `tblordenes` (`order_id`, `created_at`, `update_at`, `tblstatusorder_status_order_id`, `tblusuarios_id_usuario`) VALUES
+(3, '2020-02-03 23:15:10', '2020-02-03 23:15:10', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -262,14 +287,15 @@ CREATE TABLE IF NOT EXISTS `tblusuarios` (
   `rolId` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `fk_usuarios_tblrol1_idx` (`rolId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Dumping data for table `tblusuarios`
 --
 
 INSERT INTO `tblusuarios` (`id_usuario`, `customer_name`, `customer_email`, `customer_mobile`, `clave`, `rolId`) VALUES
-(2, 'Erika Garcia', 'erikagarcia1179@gmail.com', '3128409929', 'P0L1fe703d258c7ef5f50b71e06565a65aa07194907f', 1);
+(2, 'Erika Garcia', 'erikagarcia1179@gmail.com', '3128409929', 'P0L1fe703d258c7ef5f50b71e06565a65aa07194907f', 1),
+(8, 'Efrain2', 'EFRASOFT@GMAIL.COM', '3174208855', '94490217', 2);
 
 --
 -- Constraints for dumped tables

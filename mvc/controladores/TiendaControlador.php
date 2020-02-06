@@ -35,7 +35,7 @@ use sistema\nucleo as Sisnuc;
 
 //use vendor\bin\
 
-class TiendaControlador extends Sisnuc\APControlador
+class tiendaControlador extends Sisnuc\APControlador
 {
 
     private $_ayuda;

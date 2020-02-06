@@ -1,5 +1,5 @@
 <?php
-class TiendaModelo extends sistema\nucleo\APModelo
+class tiendaModelo extends sistema\nucleo\APModelo
 {
 
     /**
@@ -84,7 +84,7 @@ class TiendaModelo extends sistema\nucleo\APModelo
         try {
             $tblusuarios_id_usuario         = $this->_bd->lastInsertId();
             $tblstatusorder_status_order_id = 1;
-            $post                           = $this->_bd->consulta('INSERT INTO Tblordenes (tblusuarios_id_usuario,   tblstatusorder_status_order_id) VALUES (:tblusuarios_id_usuario, :tblstatusorder_status_order_id)');
+            $post                           = $this->_bd->consulta('INSERT INTO tblordenes (tblusuarios_id_usuario,   tblstatusorder_status_order_id) VALUES (:tblusuarios_id_usuario, :tblstatusorder_status_order_id)');
 
             $post = $this->_bd->enlace(':tblusuarios_id_usuario', $tblusuarios_id_usuario);
             $post = $this->_bd->enlace(':tblstatusorder_status_order_id', $tblstatusorder_status_order_id);
@@ -103,7 +103,7 @@ class TiendaModelo extends sistema\nucleo\APModelo
     public function registrarDetallesM($order_id, $id, $cantidad, $precio)
     {
         try {
-            $post = $this->_bd->consulta('INSERT INTO Tbldetalle_orden (tblorders_order_id, tblproductos_producto_Id, cantidad, precio) VALUES (:tblorders_order_id, :tblproductos_producto_Id, :cantidad, :precio)');
+            $post = $this->_bd->consulta('INSERT INTO tbldetalle_orden (tblorders_order_id, tblproductos_producto_Id, cantidad, precio) VALUES (:tblorders_order_id, :tblproductos_producto_Id, :cantidad, :precio)');
 
             $post = $this->_bd->enlace(':tblorders_order_id', $order_id);
             $post = $this->_bd->enlace(':tblproductos_producto_Id', $id);

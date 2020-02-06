@@ -30,9 +30,10 @@ if (version_compare(PHP_VERSION, '5.3.20', '<')) {
 
 //Cargamos los Espacios de nombres para el nucleo y los ayudantes
 //Utilizamos un alias
+use Dnetix\Redirection\PlacetoPay;
 use sistema\nucleo as Sisnuc;
 
-class CarritoControlador extends Sisnuc\APControlador
+class carritoControlador extends Sisnuc\APControlador
 {
     //aquí guardamos el contenido del carrito
     private $carrito   = array();
@@ -95,9 +96,10 @@ class CarritoControlador extends Sisnuc\APControlador
     {
         $sTienda = $this->cargaModelo('tienda');
 
-        $sUsuario = $this->cargaModelo('usuario');
+        $sUsuario       = $this->cargaModelo('usuario');
+        $identificacion = $this->_seg->cifrado($this->_seg->filtrarTexto($_POST['identificacion']));
 
-        $sUsuario->registrarUsuarioM($_POST['nombre'], $_POST['email'], $_POST['identificacion'], $_POST['movil']);
+        $sUsuario->registrarUsuarioM($_POST['nombre'], $_POST['email'], $identificacion, $_POST['movil']);
 
         $order_id = $sTienda->registrarOrdenM();
 
@@ -113,6 +115,7 @@ class CarritoControlador extends Sisnuc\APControlador
             $sTienda->registrarDetallesM($order_id, $val['id'], $val['cantidad'], $val['precio']);
 
         }
+        $this->pagar();
     }
 
     public function inicio()
@@ -472,4 +475,144 @@ class CarritoControlador extends Sisnuc\APControlador
         }
     }
 
+    public function pagar()
+    {
+
+        $placetopay = new Dnetix\Redirection\PlacetoPay([
+    'login' => '6dd490faf9cb87a9862245da41170ff2',
+    'tranKey' => '024h1IlD',
+    'url' => 'https://dev.placetopay.com/redirection/',
+]);
+       // require_once __DIR__ . "bootstrap.php";
+        // Creating a random reference for the test
+        $reference = 'TEST_' . time();
+
+// Request Information
+        $request = [
+            "locale"         => "es_CO",
+            "payer"          => [
+                "name"         => "Kellie Gerhold",
+                "surname"      => "Yost",
+                "email"        => "flowe@anderson.com",
+                "documentType" => "CC",
+                "document"     => "1848839248",
+                "mobile"       => "3006108300",
+                "address"      => [
+                    "street"     => "703 Dicki Island Apt. 609",
+                    "city"       => "North Randallstad",
+                    "state"      => "Antioquia",
+                    "postalCode" => "46292",
+                    "country"    => "US",
+                    "phone"      => "363-547-1441 x383",
+                ],
+            ],
+            "buyer"          => [
+                "name"         => "Kellie Gerhold",
+                "surname"      => "Yost",
+                "email"        => "flowe@anderson.com",
+                "documentType" => "CC",
+                "document"     => "1848839248",
+                "mobile"       => "3006108300",
+                "address"      => [
+                    "street"     => "703 Dicki Island Apt. 609",
+                    "city"       => "North Randallstad",
+                    "state"      => "Antioquia",
+                    "postalCode" => "46292",
+                    "country"    => "US",
+                    "phone"      => "363-547-1441 x383",
+                ],
+            ],
+            "payment"        => [
+                "reference"    => $reference,
+                "description"  => "Iusto sit et voluptatem.",
+                "amount"       => [
+                    "taxes"    => [
+                        [
+                            "kind"   => "ice",
+                            "amount" => 56.4,
+                            "base"   => 470,
+                        ],
+                        [
+                            "kind"   => "valueAddedTax",
+                            "amount" => 89.3,
+                            "base"   => 470,
+                        ],
+                    ],
+                    "details"  => [
+                        [
+                            "kind"   => "shipping",
+                            "amount" => 47,
+                        ],
+                        [
+                            "kind"   => "tip",
+                            "amount" => 47,
+                        ],
+                        [
+                            "kind"   => "subtotal",
+                            "amount" => 940,
+                        ],
+                    ],
+                    "currency" => "USD",
+                    "total"    => 1076.3,
+                ],
+                "items"        => [
+                    [
+                        "sku"      => 26443,
+                        "name"     => "Qui voluptatem excepturi.",
+                        "category" => "physical",
+                        "qty"      => 1,
+                        "price"    => 940,
+                        "tax"      => 89.3,
+                    ],
+                ],
+                "shipping"     => [
+                    "name"         => "Kellie Gerhold",
+                    "surname"      => "Yost",
+                    "email"        => "flowe@anderson.com",
+                    "documentType" => "CC",
+                    "document"     => "1848839248",
+                    "mobile"       => "3006108300",
+                    "address"      => [
+                        "street"     => "703 Dicki Island Apt. 609",
+                        "city"       => "North Randallstad",
+                        "state"      => "Antioquia",
+                        "postalCode" => "46292",
+                        "country"    => "US",
+                        "phone"      => "363-547-1441 x383",
+                    ],
+                ],
+                "allowPartial" => false,
+            ],
+            "expiration"     => date('c', strtotime('+1 hour')),
+            "ipAddress"      => "127.0.0.1",
+            "userAgent"      => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36",
+            "returnUrl"      => "http://dnetix.dev/p2p/client",
+            "cancelUrl"      => "https://dnetix.co",
+            "skipResult"     => false,
+            "noBuyerFill"    => false,
+            "captureAddress" => false,
+            "paymentMethod"  => null,
+        ];
+
+        try {
+           // $placetopay = $this->placetopay();
+            $response   = $placetopay->request($request);
+
+            if ($response->isSuccessful()) {
+                // Redirect the client to the processUrl or display it on the JS extension
+                // $response->processUrl();
+            } else {
+                // There was some error so check the message
+                // $response->status()->message();
+            }
+            var_dump($response);
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+        }
+
+    }
+
+    
+
 }
+ 

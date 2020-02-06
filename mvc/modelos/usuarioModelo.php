@@ -36,7 +36,7 @@ class usuarioModelo extends sistema\nucleo\APModelo
     public function seleccionUsuario($customer_email, $clave)
     {
         try {
-            $gsent = $this->_bd->consulta('select id_usuario, customer_name, customer_customer_email,  rolId from Tblusuarios where customer_customer_email = :customer_customer_email and clave = :clave');
+            $gsent = $this->_bd->consulta('select id_usuario, customer_name, customer_customer_email,  rolId from tblusuarios where customer_customer_email = :customer_customer_email and clave = :clave');
 
             $gsent = $this->_bd->enlace(':customer_customer_email', $customer_email);
             $gsent = $this->_bd->enlace(':clave', $clave);
@@ -52,7 +52,7 @@ class usuarioModelo extends sistema\nucleo\APModelo
     public function insertarRegistro($customer_name, $customer_email, $rolId, $clave)
     {
         try {
-            $post = $this->_bd->consulta('INSERT INTO Tblusuarios (customer_name, customer_email, rolId, clave) VALUES (:customer_name, :customer_email, :rolId, :clave)');
+            $post = $this->_bd->consulta('INSERT INTO tblusuarios (customer_name, customer_email, rolId, clave) VALUES (:customer_name, :customer_email, :rolId, :clave)');
 
             $post = $this->_bd->enlace(':customer_name', $customer_name);
             $post = $this->_bd->enlace(':customer_email', $customer_email);
@@ -69,7 +69,7 @@ class usuarioModelo extends sistema\nucleo\APModelo
     public function registrarUsuarioM($customer_name, $customer_email, $identificacion, $customer_mobile, $rolId = 2)
     {
         try {
-            $post = $this->_bd->consulta('INSERT INTO Tblusuarios (customer_name, customer_email, customer_mobile, rolId, clave) VALUES (:customer_name, :customer_email, :customer_mobile, :rolId, :clave)');
+            $post = $this->_bd->consulta('INSERT INTO tblusuarios (customer_name, customer_email, customer_mobile, rolId, clave) VALUES (:customer_name, :customer_email, :customer_mobile, :rolId, :clave)');
 
             $post = $this->_bd->enlace(':customer_name', $customer_name);
             $post = $this->_bd->enlace(':customer_email', $customer_email);

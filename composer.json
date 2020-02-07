@@ -47,7 +47,10 @@
 				"monolog/monolog":  "*",
 				"elmijo/php-error-log": "2.0",
                 "smottt/wideimage": "*",
-                "vlucas/phpdotenv": "*"               
+                "vlucas/phpdotenv": "*",
+                "dnetix/redirection": "*",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "*"              
 	},
          
         

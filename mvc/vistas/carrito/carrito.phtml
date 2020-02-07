@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/bootstrap.css" rel="stylesheet">
+  <!-- Pretty Photo -->
+  <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/prettyPhoto.css" rel="stylesheet">
+  <!-- Flex slider -->
+  <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/flexslider.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/font-awesome.css"> 
+  <!-- Main stylesheet -->
+  <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/style.css" rel="stylesheet">
+  <!-- Stylesheet for Color -->
+  <link href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/style/red.css" rel="stylesheet">
+  
+  
+  <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+  <script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/html5shim.js"></script>
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/favicon/favicon.png">
+</head>
+
+<body>
+
+ 
+<!-- Header starts -->
+  <header>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4">
+          <!-- Logo. Use class "color" to add color to the text. -->
+          <div class="logo">
+            <h1><a href="#">Efra<span class="color bold">Shop</span></a></h1>
+            <p class="meta">Nuestra Tienda!!!</p>
+          </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-3">
+          
+          <!-- Buscar form -->
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <input type="email" class="form-control" id="buscar" placeholder="Buscar">
+              </div>
+              
+              <button type="submit" class="btn btn-default">Buscar</button>
+            </form>
+
+          <div class="hlinks">
+            <span>
+
+              <!-- item details with price -->
+              <a href="#cart" role="button" data-toggle="modal">3 Item(s) En Tu <i class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>  
+
+            </span>
+
+
+              <!-- Login and Register link -->
+              <span class="lr"><a href="#login" role="button" data-toggle="modal">Inicio de sesión</a> or <a href="#register" role="button" data-toggle="modal">Registro</a></span>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+  <!-- Header ends -->
+  
+  
+  <!-- Cart, Login and Register form (Modal) -->
+
+    <!-- Cart Modal starts -->
+<div id="cart" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>Shopping Cart</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped tcart">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href="#single-item.html">HTC One</a></td>
+                      <td>2</td>
+                      <td>$250</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#single-item.html">Apple iPhone</a></td>
+                      <td>1</td>
+                      <td>$502</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#single-item.html">Galaxy Note</a></td>
+                      <td>4</td>
+                      <td>$1303</td>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th>Total</th>
+                      <th>$2405</th>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <a href="index.html" class="btn">Continue Shopping</a>
+                <a href="checkout.html" class="btn btn-danger">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart modal ends -->
+
+  <!-- Login Modal starts -->
+<div id="login" class="modal fade">
+<div class="modal-dialog">
+        <div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>Login</h4>
+  </div>
+  <div class="modal-body">
+
+                    <div class="form">
+
+                                      <form class="form-horizontal">   
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="username">Username</label>
+                                            <div class="col-md-9">
+                                              <input type="text" class="form-control" id="username">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="email">Password</label>
+                                            <div class="col-md-9">
+                                              <input type="password" class="form-control" id="password">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <div class="col-md-9 col-md-offset-3">
+                                             <div class="checkbox inline">
+                                                <label>
+                                                   <input type="checkbox" id="inlineCheckbox1" value="agree"> Remember Password
+                                                </label>
+                                             </div>
+                                             </div>
+                                          </div> 
+                                          
+                                          <div class="form-group">
+                                          <div class="col-md-9 col-md-offset-3">
+                                            <button type="submit" class="btn btn-default">Login</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                          </div>
+                                          </div>
+                                      </form>
+                                    </div> 
+
+  </div>
+  <div class="modal-footer">
+    <p>Dont have account? <a href="register.html">Register</a> here.</p>
+  </div>
+  </div>
+  </div>
+</div>
+
+<!-- Login modal ends -->
+
+  <!-- Register Modal starts -->
+
+<div id="register" class="modal fade">
+<div class="modal-dialog">
+        <div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>Register</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form">
+                                      <form class="form-horizontal">
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="name">Name</label>
+                                            <div class="col-md-9">
+                                              <input type="text" class="form-control" id="name">
+                                            </div>
+                                          </div>   
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="email">Email</label>
+                                            <div class="col-md-9">
+                                              <input type="text" class="form-control" id="email">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3">Drop Down</label>
+                                            <div class="col-md-9">                               
+                                                <select class="form-control">
+                                                <option>&nbsp;</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                </select>  
+                                            </div>
+                                          </div>           
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="username1">Username</label>
+                                            <div class="col-md-9">
+                                              <input type="text" class="form-control" id="username1">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="password1">Password</label>
+                                            <div class="col-md-9">
+                                              <input type="password" class="form-control" id="password1">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                          <div class="col-md-9 col-md-offset-3">
+                                             <div class="checkbox inline">
+                                                <label>
+                                                   <input type="checkbox" id="inlineCheckbox2" value="agree"> Agree with Terms and Conditions
+                                                </label>
+                                             </div>
+                                            </div>
+                                          </div> 
+                                          
+                                          <div class="form-group">
+                                            <div class="col-md-9 col-md-offset-3">
+                                            <button type="submit" class="btn btn-default">Register</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                            </div>
+                                          </div>
+                                      </form>
+                                    </div>
+  </div>
+  <div class="modal-footer">
+    <p>Already have account? <a href="login.html">Login</a> here.</p>
+  </div>
+  </div>
+  </div>
+</div>
+
+<!-- Register modal ends -->
+
+  <!-- Navigation -->
+          <div class="navbar bs-docs-nav" role="banner">           
+             <div class="container">
+               <div class="navbar-header">
+                  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>      
+                </div>
+               <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                 <ul class="nav navbar-nav">
+                   <li><a href="index.html"><i class="icon-home"></i></a></li>
+                    <?php foreach ($this->menu as $menu_user) { ?>
+
+                        <li><a href="<?PHP ECHO Ap_BASE_URL ?><?php echo $menu_user['url'];  ?>"><?php echo $menu_user['nombre'];  ?></a></li>
+
+                   
+                  <?php  }   ?>
+                 </ul>
+               </nav>
+              </div>
+           </div>   
+
+<!-- Cart starts -->
+
+<div class="cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <!-- Title with number of items in shopping kart -->
+          <h3 class="title"><i class="icon-shopping-cart"></i> Items en el carro </h3>
+            <br />            
+            <?php if($this->itensC) { foreach ($this->itensC as $itens_user => $val) { ?>
+            <!-- Table -->
+              <table class="table table-striped tcart">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Index -->
+                    <td><?php echo $val['id'];  ?></td>
+                    <!-- Product  name -->
+                    <td><a href="single-item.html"><?php echo $val['nombre'];  ?></a></td>
+                    <!-- Product image -->
+                    <td><a href="single-item.html"><img src="<?PHP ECHO Ap_BASE_URL ?>/public_/productos/2.png" alt="" /></a></td>
+                    <!-- Quantity with refresh and remove button -->
+                    <td class="item-input">
+            <div class="input-group">
+              <input class="form-control" type="text" value="<?php echo $val['cantidad'];  ?>">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+                <button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+              </span>
+            </div>
+                    </td>
+                    <!-- Unit price -->
+                    <td>$<?php echo $val['precio'];  ?></td>
+                    <!-- Total cost -->
+                    <td>$<?php echo $val['precio']*$val['cantidad'];  ?></td>
+                  </tr>                            
+                  
+                </tbody>
+              </table>
+            <?php }} ?>
+
+              <form class="form-inline">
+              <!-- Discount Coupen -->
+                <h5 class="title">Discount Coupen</h5>
+                <div class="form-group">
+          <input type="email" class="form-control" id="" placeholder="Discount Coupon">
+        </div>
+        
+        <button type="submit" class="btn btn-default">Apply</button>
+                <br />
+                <br />
+                <!-- Gift coupen -->
+                <h5 class="title">Gift Coupen</h5>
+                <div class="form-group">
+          <input type="email" class="form-control" id="" placeholder="Gift Coupon">
+        </div>
+        
+        <button type="submit" class="btn btn-default">Apply</button>           
+              </form>  
+               
+               <!-- Button s-->
+              <div class="row">
+                <div class="col-md-4 col-md-offset-8">
+                  <div class="pull-right">
+                    <a href="<?PHP ECHO Ap_BASE_URL ?>tienda/index" class="btn btn-default">Continue Comprando</a>
+                    <a href="<?PHP ECHO Ap_BASE_URL ?>carrito/checkout" class="btn btn-danger">CheckOut</a>
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart ends -->
+
+<!-- Newsletter starts -->
+
+<div class="container newsletter">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+               <h5><i class="icon-envelope-alt"></i> Hot Offers - Don't Miss Anything!!!</h5>
+               <p>Nulla facilisi. Sed justo dui, scelerisque ut consectetur vel, eleifend id erat. Morbi auctor adipiscing tempor. Phasellus condimentum rutrum aliquet.</p>
+               <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="buscar" placeholder="Suscríbete">
+                    </div>
+                    <button type="submit" class="btn btn-default">Suscríbete</button>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter ends -->
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="widget">
+                  <h5>Contact</h5>
+                  <hr />
+                    <div class="social">
+                      <a href="#"><i class="icon-facebook facebook"></i></a>
+                      <a href="#"><i class="icon-twitter twitter"></i></a>
+                      <a href="#"><i class="icon-linkedin linkedin"></i></a>
+                      <a href="#"><i class="icon-google-plus google-plus"></i></a> 
+                    </div>
+                  <hr />
+                  <i class="icon-home"></i> &nbsp; 123, Some Area. Los Angeles, CA, 54321.
+                  <hr />
+                  <i class="icon-phone"></i> &nbsp; +239-3823-3434
+                  <hr />
+                  <i class="icon-envelope-alt"></i> &nbsp; <a href="mailto:#">someone@company.com</a>
+                  <hr />
+                  <div class="payment-icons">
+                    <img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/payment/americanexpress.gif" alt="" />
+                    <img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/payment/visa.gif" alt="" />
+                    <img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/payment/mastercard.gif" alt="" />
+                    <img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/payment/discover.gif" alt="" />
+                    <img src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/img/payment/paypal.gif" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="widget">
+                  <h5>About Us</h5>
+                  <hr />
+                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum dolor eget nisi fermentum quis hendrerit magna vestibulum. Curabitur pulvinar ornare vulputate scelerisque scelerisque ut consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum dolor eget nisi fermentum quis hendrerit magna vestibulum.</p> 
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="widget">
+                  <h5>Links Goes Here</h5>
+                  <hr />
+                  <div class="two-col">
+                    <div class="col-left">
+                      <ul>
+                        <li><a href="#">Condimentum</a></li>
+                        <li><a href="#">Etiam at</a></li>
+                        <li><a href="#">Fusce vel</a></li>
+                        <li><a href="#">Vivamus</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Vivamus</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-right">
+                      <ul>
+                        <li><a href="#">Condimentum</a></li>
+                        <li><a href="#">Etiam at</a></li>
+                        <li><a href="#">Fusce vel</a></li>
+                        <li><a href="#">Vivamus</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Vivamus</a></li>
+                      </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <hr />
+            <!-- Copyright info -->
+            <p class="copy">Copyright &copy; 2020 | <a href="#">EfraShop</a> - <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Service</a> | <a href="#">Contact Us</a></p>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>   
+
+<!-- Footer ends -->
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+
+<!-- JS -->
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.js"></script> <!-- jQuery -->
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/bootstrap.js"></script> <!-- Bootstrap -->
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.prettyPhoto.js"></script> <!-- Pretty Photo -->
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/filter.js"></script> <!-- Filter for support page -->
+
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.flexslider-min.js"></script> <!-- Flex slider -->
+
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/jquery.carouFredSel-6.1.0-packed.js"></script> <!-- Carousel for recent posts -->
+<script src="<?PHP ECHO Ap_BASE_URL ?>/public_/temas/shop/js/custom.js"></script> <!-- Custom codes -->
+
+</body>
+</html>
+
+
+

@@ -14,6 +14,7 @@ namespace Symfony\Component\Validator\Constraints;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
@@ -30,7 +31,7 @@ class CurrencyValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Currency) {
-            throw new UnexpectedTypeException($constraint, Currency::class);
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Currency');
         }
 
         if (null === $value || '' === $value) {
@@ -45,10 +46,17 @@ class CurrencyValidator extends ConstraintValidator
         $currencies = Intl::getCurrencyBundle()->getCurrencyNames();
 
         if (!isset($currencies[$value])) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $this->formatValue($value))
-                ->setCode(Currency::NO_SUCH_CURRENCY_ERROR)
-                ->addViolation();
+            if ($this->context instanceof ExecutionContextInterface) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Currency::NO_SUCH_CURRENCY_ERROR)
+                    ->addViolation();
+            } else {
+                $this->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Currency::NO_SUCH_CURRENCY_ERROR)
+                    ->addViolation();
+            }
         }
     }
 }

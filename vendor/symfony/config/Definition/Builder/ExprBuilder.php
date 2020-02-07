@@ -89,18 +89,6 @@ class ExprBuilder
     }
 
     /**
-     * Tests if the value is empty.
-     *
-     * @return ExprBuilder
-     */
-    public function ifEmpty()
-    {
-        $this->ifPart = function ($v) { return empty($v); };
-
-        return $this;
-    }
-
-    /**
      * Tests if the value is an array.
      *
      * @return $this
@@ -137,19 +125,6 @@ class ExprBuilder
     }
 
     /**
-     * Transforms variables of any type into an array.
-     *
-     * @return $this
-     */
-    public function castToArray()
-    {
-        $this->ifPart = function ($v) { return !\is_array($v); };
-        $this->thenPart = function ($v) { return [$v]; };
-
-        return $this;
-    }
-
-    /**
      * Sets the closure to run if the test pass.
      *
      * @return $this
@@ -168,7 +143,7 @@ class ExprBuilder
      */
     public function thenEmptyArray()
     {
-        $this->thenPart = function ($v) { return []; };
+        $this->thenPart = function ($v) { return array(); };
 
         return $this;
     }

@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints\Traverse;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\GroupDefinitionException;
+use Symfony\Component\Validator\ValidationVisitorInterface;
 
 /**
  * Default implementation of {@link ClassMetadataInterface}.
@@ -26,7 +27,7 @@ use Symfony\Component\Validator\Exception\GroupDefinitionException;
  * @author Bernhard Schussek <bschussek@gmail.com>
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
+class ClassMetadata extends ElementMetadata implements ClassMetadataInterface
 {
     /**
      * @var string
@@ -53,7 +54,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $members = [];
+    public $members = array();
 
     /**
      * @var PropertyMetadata[]
@@ -62,7 +63,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $properties = [];
+    public $properties = array();
 
     /**
      * @var GetterMetadata[]
@@ -71,7 +72,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $getters = [];
+    public $getters = array();
 
     /**
      * @var array
@@ -80,7 +81,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getGroupSequence()} instead.
      */
-    public $groupSequence = [];
+    public $groupSequence = array();
 
     /**
      * @var bool
@@ -127,6 +128,47 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated since version 2.5, to be removed in 3.0.
+     */
+    public function accept(ValidationVisitorInterface $visitor, $value, $group, $propertyPath, $propagatedGroup = null)
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.5 and will be removed in 3.0.', E_USER_DEPRECATED);
+
+        if (null === $propagatedGroup && Constraint::DEFAULT_GROUP === $group
+                && ($this->hasGroupSequence() || $this->isGroupSequenceProvider())) {
+            if ($this->hasGroupSequence()) {
+                $groups = $this->getGroupSequence()->groups;
+            } else {
+                $groups = $value->getGroupSequence();
+            }
+
+            foreach ($groups as $group) {
+                $this->accept($visitor, $value, $group, $propertyPath, Constraint::DEFAULT_GROUP);
+
+                if (\count($visitor->getViolations()) > 0) {
+                    break;
+                }
+            }
+
+            return;
+        }
+
+        $visitor->visit($this, $value, $group, $propertyPath);
+
+        if (null !== $value) {
+            $pathPrefix = empty($propertyPath) ? '' : $propertyPath.'.';
+
+            foreach ($this->getConstrainedProperties() as $property) {
+                foreach ($this->getPropertyMetadata($property) as $member) {
+                    $member->accept($visitor, $member->getPropertyValue($value), $group, $pathPrefix.$property, $propagatedGroup);
+                }
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function __sleep()
     {
@@ -135,7 +177,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
         // Don't store the cascading strategy. Classes never cascade.
         unset($parentProperties[array_search('cascadingStrategy', $parentProperties)]);
 
-        return array_merge($parentProperties, [
+        return array_merge($parentProperties, array(
             'getters',
             'groupSequence',
             'groupSequenceProvider',
@@ -143,7 +185,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
             'name',
             'properties',
             'defaultGroup',
-        ]);
+        ));
     }
 
     /**
@@ -329,7 +371,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     /**
      * Merges the constraints of the given metadata into this object.
      */
-    public function mergeConstraints(self $source)
+    public function mergeConstraints(ClassMetadata $source)
     {
         if ($source->isGroupSequenceProvider()) {
             $this->setGroupSequenceProvider(true);
@@ -367,11 +409,57 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     }
 
     /**
+     * Adds a member metadata.
+     *
+     * @param MemberMetadata $metadata
+     *
+     * @deprecated since version 2.6, to be removed in 3.0.
+     */
+    protected function addMemberMetadata(MemberMetadata $metadata)
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.6 and will be removed in 3.0. Use the addPropertyMetadata() method instead.', E_USER_DEPRECATED);
+
+        $this->addPropertyMetadata($metadata);
+    }
+
+    /**
+     * Returns true if metadatas of members is present for the given property.
+     *
+     * @param string $property The name of the property
+     *
+     * @return bool
+     *
+     * @deprecated since version 2.6, to be removed in 3.0. Use {@link hasPropertyMetadata} instead.
+     */
+    public function hasMemberMetadatas($property)
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.6 and will be removed in 3.0. Use the hasPropertyMetadata() method instead.', E_USER_DEPRECATED);
+
+        return $this->hasPropertyMetadata($property);
+    }
+
+    /**
+     * Returns all metadatas of members describing the given property.
+     *
+     * @param string $property The name of the property
+     *
+     * @return MemberMetadata[] An array of MemberMetadata
+     *
+     * @deprecated since version 2.6, to be removed in 3.0. Use {@link getPropertyMetadata} instead.
+     */
+    public function getMemberMetadatas($property)
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.6 and will be removed in 3.0. Use the getPropertyMetadata() method instead.', E_USER_DEPRECATED);
+
+        return $this->getPropertyMetadata($property);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function hasPropertyMetadata($property)
     {
-        return \array_key_exists($property, $this->members);
+        return array_key_exists($property, $this->members);
     }
 
     /**
@@ -380,7 +468,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     public function getPropertyMetadata($property)
     {
         if (!isset($this->members[$property])) {
-            return [];
+            return array();
         }
 
         return $this->members[$property];

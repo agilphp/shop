@@ -12,7 +12,6 @@
 namespace Symfony\Component\Validator\Validator;
 
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\GroupSequence;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Symfony\Component\Validator\Context\ExecutionContext;
@@ -24,11 +23,11 @@ use Symfony\Component\Validator\Exception\UnsupportedMetadataException;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Mapping\CascadingStrategy;
 use Symfony\Component\Validator\Mapping\ClassMetadataInterface;
-use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
 use Symfony\Component\Validator\Mapping\GenericMetadata;
 use Symfony\Component\Validator\Mapping\MetadataInterface;
 use Symfony\Component\Validator\Mapping\PropertyMetadataInterface;
 use Symfony\Component\Validator\Mapping\TraversalStrategy;
+use Symfony\Component\Validator\MetadataFactoryInterface;
 use Symfony\Component\Validator\ObjectInitializerInterface;
 use Symfony\Component\Validator\Util\PropertyPath;
 
@@ -57,11 +56,11 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
      *                                                                constraint validators
      * @param ObjectInitializerInterface[]        $objectInitializers The object initializers
      */
-    public function __construct(ExecutionContextInterface $context, MetadataFactoryInterface $metadataFactory, ConstraintValidatorFactoryInterface $validatorFactory, array $objectInitializers = [])
+    public function __construct(ExecutionContextInterface $context, MetadataFactoryInterface $metadataFactory, ConstraintValidatorFactoryInterface $validatorFactory, array $objectInitializers = array())
     {
         $this->context = $context;
         $this->defaultPropertyPath = $context->getPropertyPath();
-        $this->defaultGroups = [$context->getGroup() ?: Constraint::DEFAULT_GROUP];
+        $this->defaultGroups = array($context->getGroup() ?: Constraint::DEFAULT_GROUP);
         $this->metadataFactory = $metadataFactory;
         $this->validatorFactory = $validatorFactory;
         $this->objectInitializers = $objectInitializers;
@@ -101,7 +100,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             // You can pass a single constraint or an array of constraints
             // Make sure to deal with an array in the rest of the code
             if (!\is_array($constraints)) {
-                $constraints = [$constraints];
+                $constraints = array($constraints);
             }
 
             $metadata = new GenericMetadata();
@@ -153,6 +152,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
                 $value,
                 $this->defaultPropertyPath,
                 $groups,
+                true,
                 $this->context
             );
 
@@ -173,6 +173,8 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
         $classMetadata = $this->metadataFactory->getMetadataFor($object);
 
         if (!$classMetadata instanceof ClassMetadataInterface) {
+            // Cannot be UnsupportedMetadataException because of BC with
+            // Symfony < 2.5
             throw new ValidatorException(sprintf('The metadata factory should return instances of "\Symfony\Component\Validator\Mapping\ClassMetadataInterface", got: "%s".', \is_object($classMetadata) ? \get_class($classMetadata) : \gettype($classMetadata)));
         }
 
@@ -193,7 +195,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             $this->validateGenericNode(
                 $propertyValue,
                 $object,
-                $cacheKey.':'.\get_class($object).':'.$propertyName,
+                $cacheKey.':'.$propertyName,
                 $propertyMetadata,
                 $propertyPath,
                 $groups,
@@ -217,6 +219,8 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
         $classMetadata = $this->metadataFactory->getMetadataFor($objectOrClass);
 
         if (!$classMetadata instanceof ClassMetadataInterface) {
+            // Cannot be UnsupportedMetadataException because of BC with
+            // Symfony < 2.5
             throw new ValidatorException(sprintf('The metadata factory should return instances of "\Symfony\Component\Validator\Mapping\ClassMetadataInterface", got: "%s".', \is_object($classMetadata) ? \get_class($classMetadata) : \gettype($classMetadata)));
         }
 
@@ -225,13 +229,11 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
 
         if (\is_object($objectOrClass)) {
             $object = $objectOrClass;
-            $class = \get_class($object);
             $cacheKey = spl_object_hash($objectOrClass);
             $propertyPath = PropertyPath::append($this->defaultPropertyPath, $propertyName);
         } else {
             // $objectOrClass contains a class name
             $object = null;
-            $class = $objectOrClass;
             $cacheKey = null;
             $propertyPath = $this->defaultPropertyPath;
         }
@@ -246,7 +248,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             $this->validateGenericNode(
                 $value,
                 $object,
-                $cacheKey.':'.$class.':'.$propertyName,
+                $cacheKey.':'.$propertyName,
                 $propertyMetadata,
                 $propertyPath,
                 $groups,
@@ -283,7 +285,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             return $groups;
         }
 
-        return [$groups];
+        return array($groups);
     }
 
     /**
@@ -343,6 +345,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
                 $object,
                 $propertyPath,
                 $groups,
+                $traversalStrategy & TraversalStrategy::STOP_RECURSION,
                 $context
             );
         }
@@ -352,22 +355,40 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
      * Validates each object in a collection against the constraints defined
      * for their classes.
      *
-     * Nested arrays are also iterated.
+     * If the parameter $recursive is set to true, nested {@link \Traversable}
+     * objects are iterated as well. Nested arrays are always iterated,
+     * regardless of the value of $recursive.
      *
-     * @param iterable                  $collection   The collection
-     * @param string                    $propertyPath The current property path
-     * @param (string|GroupSequence)[]  $groups       The validated groups
-     * @param ExecutionContextInterface $context      The current execution context
+     * @param iterable                  $collection    The collection
+     * @param string                    $propertyPath  The current property path
+     * @param (string|GroupSequence)[]  $groups        The validated groups
+     * @param bool                      $stopRecursion Whether to disable
+     *                                                 recursive iteration. For
+     *                                                 backwards compatibility
+     *                                                 with Symfony < 2.5.
+     * @param ExecutionContextInterface $context       The current execution context
+     *
+     * @see ClassNode
+     * @see CollectionNode
      */
-    private function validateEachObjectIn($collection, $propertyPath, array $groups, ExecutionContextInterface $context)
+    private function validateEachObjectIn($collection, $propertyPath, array $groups, $stopRecursion, ExecutionContextInterface $context)
     {
+        if ($stopRecursion) {
+            $traversalStrategy = TraversalStrategy::NONE;
+        } else {
+            $traversalStrategy = TraversalStrategy::IMPLICIT;
+        }
+
         foreach ($collection as $key => $value) {
             if (\is_array($value)) {
-                // Also traverse nested arrays
+                // Arrays are always cascaded, independent of the specified
+                // traversal strategy
+                // (BC with Symfony < 2.5)
                 $this->validateEachObjectIn(
                     $value,
                     $propertyPath.'['.$key.']',
                     $groups,
+                    $stopRecursion,
                     $context
                 );
 
@@ -375,12 +396,13 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             }
 
             // Scalar and null values in the collection are ignored
+            // (BC with Symfony < 2.5)
             if (\is_object($value)) {
                 $this->validateObject(
                     $value,
                     $propertyPath.'['.$key.']',
                     $groups,
-                    TraversalStrategy::IMPLICIT,
+                    $traversalStrategy,
                     $context
                 );
             }
@@ -539,7 +561,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
                 $this->validateGenericNode(
                     $propertyValue,
                     $object,
-                    $cacheKey.':'.\get_class($object).':'.$propertyName,
+                    $cacheKey.':'.$propertyName,
                     $propertyMetadata,
                     PropertyPath::append($propertyPath, $propertyName),
                     $groups,
@@ -553,7 +575,9 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
         // If no specific traversal strategy was requested when this method
         // was called, use the traversal strategy of the class' metadata
         if ($traversalStrategy & TraversalStrategy::IMPLICIT) {
-            $traversalStrategy = $metadata->getTraversalStrategy();
+            // Keep the STOP_RECURSION flag, if it was set
+            $traversalStrategy = $metadata->getTraversalStrategy()
+                | ($traversalStrategy & TraversalStrategy::STOP_RECURSION);
         }
 
         // Traverse only if IMPLICIT or TRAVERSE
@@ -568,6 +592,8 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
 
         // If TRAVERSE, fail if we have no Traversable
         if (!$object instanceof \Traversable) {
+            // Must throw a ConstraintDefinitionException for backwards
+            // compatibility reasons with Symfony < 2.5
             throw new ConstraintDefinitionException(sprintf('Traversal was enabled for "%s", but this class does not implement "\Traversable".', \get_class($object)));
         }
 
@@ -575,6 +601,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             $object,
             $propertyPath,
             $groups,
+            $traversalStrategy & TraversalStrategy::STOP_RECURSION,
             $context
         );
     }
@@ -593,8 +620,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
      * in the passed metadata object. Then, if the value is an instance of
      * {@link \Traversable} and the selected traversal strategy permits it,
      * the value is traversed and each nested object validated against its own
-     * constraints. If the value is an array, it is traversed regardless of
-     * the given strategy.
+     * constraints. Arrays are always traversed.
      *
      * @param mixed                     $value             The validated value
      * @param object|null               $object            The current object
@@ -653,15 +679,17 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
 
         $cascadingStrategy = $metadata->getCascadingStrategy();
 
-        // Quit unless we cascade
-        if (!($cascadingStrategy & CascadingStrategy::CASCADE)) {
+        // Quit unless we have an array or a cascaded object
+        if (!\is_array($value) && !($cascadingStrategy & CascadingStrategy::CASCADE)) {
             return;
         }
 
         // If no specific traversal strategy was requested when this method
         // was called, use the traversal strategy of the node's metadata
         if ($traversalStrategy & TraversalStrategy::IMPLICIT) {
-            $traversalStrategy = $metadata->getTraversalStrategy();
+            // Keep the STOP_RECURSION flag, if it was set
+            $traversalStrategy = $metadata->getTraversalStrategy()
+                | ($traversalStrategy & TraversalStrategy::STOP_RECURSION);
         }
 
         // The $cascadedGroups property is set, if the "Default" group is
@@ -672,10 +700,12 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
         if (\is_array($value)) {
             // Arrays are always traversed, independent of the specified
             // traversal strategy
+            // (BC with Symfony < 2.5)
             $this->validateEachObjectIn(
                 $value,
                 $propertyPath,
                 $cascadedGroups,
+                $traversalStrategy & TraversalStrategy::STOP_RECURSION,
                 $context
             );
 
@@ -684,6 +714,7 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
 
         // If the value is a scalar, pass it anyway, because we want
         // a NoSuchMetadataException to be thrown in that case
+        // (BC with Symfony < 2.5)
         $this->validateObject(
             $value,
             $propertyPath,
@@ -726,10 +757,10 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
     private function stepThroughGroupSequence($value, $object, $cacheKey, MetadataInterface $metadata = null, $propertyPath, $traversalStrategy, GroupSequence $groupSequence, $cascadedGroup, ExecutionContextInterface $context)
     {
         $violationCount = \count($context->getViolations());
-        $cascadedGroups = $cascadedGroup ? [$cascadedGroup] : null;
+        $cascadedGroups = $cascadedGroup ? array($cascadedGroup) : null;
 
         foreach ($groupSequence->groups as $groupInSequence) {
-            $groups = (array) $groupInSequence;
+            $groups = array($groupInSequence);
 
             if ($metadata instanceof ClassMetadataInterface) {
                 $this->validateClassNode(
@@ -782,10 +813,6 @@ class RecursiveContextualValidator implements ContextualValidatorInterface
             // that constraints belong to multiple validated groups
             if (null !== $cacheKey) {
                 $constraintHash = spl_object_hash($constraint);
-
-                if ($constraint instanceof Composite) {
-                    $constraintHash .= $group;
-                }
 
                 if ($context->isConstraintValidated($cacheKey, $constraintHash)) {
                     continue;

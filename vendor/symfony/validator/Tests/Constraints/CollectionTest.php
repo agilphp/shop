@@ -23,80 +23,90 @@ use Symfony\Component\Validator\Constraints\Valid;
  */
 class CollectionTest extends TestCase
 {
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     */
     public function testRejectInvalidFieldsOption()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\ConstraintDefinitionException');
-        new Collection([
+        new Collection(array(
             'fields' => 'foo',
-        ]);
+        ));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     */
     public function testRejectNonConstraints()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\ConstraintDefinitionException');
-        new Collection([
+        new Collection(array(
             'foo' => 'bar',
-        ]);
+        ));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     */
     public function testRejectValidConstraint()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\ConstraintDefinitionException');
-        new Collection([
+        new Collection(array(
             'foo' => new Valid(),
-        ]);
+        ));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     */
     public function testRejectValidConstraintWithinOptional()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\ConstraintDefinitionException');
-        new Collection([
+        new Collection(array(
             'foo' => new Optional(new Valid()),
-        ]);
+        ));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
+     */
     public function testRejectValidConstraintWithinRequired()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\ConstraintDefinitionException');
-        new Collection([
+        new Collection(array(
             'foo' => new Required(new Valid()),
-        ]);
+        ));
     }
 
     public function testAcceptOptionalConstraintAsOneElementArray()
     {
-        $collection1 = new Collection([
-            'fields' => [
-                'alternate_email' => [
+        $collection1 = new Collection(array(
+            'fields' => array(
+                'alternate_email' => array(
                     new Optional(new Email()),
-                ],
-            ],
-        ]);
+                ),
+            ),
+        ));
 
-        $collection2 = new Collection([
-            'fields' => [
+        $collection2 = new Collection(array(
+            'fields' => array(
                 'alternate_email' => new Optional(new Email()),
-            ],
-        ]);
+            ),
+        ));
 
         $this->assertEquals($collection1, $collection2);
     }
 
     public function testAcceptRequiredConstraintAsOneElementArray()
     {
-        $collection1 = new Collection([
-            'fields' => [
-                'alternate_email' => [
+        $collection1 = new Collection(array(
+            'fields' => array(
+                'alternate_email' => array(
                     new Required(new Email()),
-                ],
-            ],
-        ]);
+                ),
+            ),
+        ));
 
-        $collection2 = new Collection([
-            'fields' => [
+        $collection2 = new Collection(array(
+            'fields' => array(
                 'alternate_email' => new Required(new Email()),
-            ],
-        ]);
+            ),
+        ));
 
         $this->assertEquals($collection1, $collection2);
     }

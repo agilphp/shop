@@ -33,6 +33,7 @@ if (version_compare(PHP_VERSION, '5.3.20', '<')) {
 
 use sistema\nucleo as Sisnuc;
 
+
 //use vendor\bin\
 
 class tiendaControlador extends Sisnuc\APControlador
@@ -80,6 +81,26 @@ class tiendaControlador extends Sisnuc\APControlador
         }
 
         $this->_vista->imprimirVista('listar_ordenes', 'tienda');
+    }
+
+    public function pagado()
+    {
+        if (!isset($_SESSION["carrito"])) {
+            unset($_SESSION["carrito"]);
+            $this->carrito = null;
+        }
+        $this->_vista->titulo = 'EfraShop';
+        $gtienda              = $this->cargaModelo('tienda');
+        $this->_vista->menu   = $gtienda->cargarMenu();        
+        $this->_vista->imprimirVista('pagado', 'tienda');
+    }
+
+    public function cancelado()
+    {
+        $this->_vista->titulo = 'EfraShop';
+        $gtienda              = $this->cargaModelo('tienda');
+        $this->_vista->menu   = $gtienda->cargarMenu();
+        $this->_vista->imprimirVista('cancelado', 'tienda');
     }
 
 }

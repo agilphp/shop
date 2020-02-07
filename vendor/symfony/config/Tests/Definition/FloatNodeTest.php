@@ -40,39 +40,39 @@ class FloatNodeTest extends TestCase
 
     public function getValidValues()
     {
-        return [
-            [1798.0],
-            [-678.987],
-            [12.56E45],
-            [0.0],
+        return array(
+            array(1798.0),
+            array(-678.987),
+            array(12.56E45),
+            array(0.0),
             // Integer are accepted too, they will be cast
-            [17],
-            [-10],
-            [0],
-        ];
+            array(17),
+            array(-10),
+            array(0),
+        );
     }
 
     /**
      * @dataProvider getInvalidValues
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidTypeException
      */
     public function testNormalizeThrowsExceptionOnInvalidValues($value)
     {
-        $this->expectException('Symfony\Component\Config\Definition\Exception\InvalidTypeException');
         $node = new FloatNode('test');
         $node->normalize($value);
     }
 
     public function getInvalidValues()
     {
-        return [
-            [null],
-            [''],
-            ['foo'],
-            [true],
-            [false],
-            [[]],
-            [['foo' => 'bar']],
-            [new \stdClass()],
-        ];
+        return array(
+            array(null),
+            array(''),
+            array('foo'),
+            array(true),
+            array(false),
+            array(array()),
+            array(array('foo' => 'bar')),
+            array(new \stdClass()),
+        );
     }
 }

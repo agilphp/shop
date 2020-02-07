@@ -25,13 +25,12 @@ abstract class BaseNode implements NodeInterface
 {
     protected $name;
     protected $parent;
-    protected $normalizationClosures = [];
-    protected $finalValidationClosures = [];
+    protected $normalizationClosures = array();
+    protected $finalValidationClosures = array();
     protected $allowOverwrite = true;
     protected $required = false;
-    protected $deprecationMessage = null;
-    protected $equivalentValues = [];
-    protected $attributes = [];
+    protected $equivalentValues = array();
+    protected $attributes = array();
 
     /**
      * @param string|null        $name   The name of the node
@@ -49,37 +48,21 @@ abstract class BaseNode implements NodeInterface
         $this->parent = $parent;
     }
 
-    /**
-     * @param string $key
-     */
     public function setAttribute($key, $value)
     {
         $this->attributes[$key] = $value;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
     public function getAttribute($key, $default = null)
     {
         return isset($this->attributes[$key]) ? $this->attributes[$key] : $default;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
     public function hasAttribute($key)
     {
         return isset($this->attributes[$key]);
     }
 
-    /**
-     * @return array
-     */
     public function getAttributes()
     {
         return $this->attributes;
@@ -90,9 +73,6 @@ abstract class BaseNode implements NodeInterface
         $this->attributes = $attributes;
     }
 
-    /**
-     * @param string $key
-     */
     public function removeAttribute($key)
     {
         unset($this->attributes[$key]);
@@ -111,7 +91,7 @@ abstract class BaseNode implements NodeInterface
     /**
      * Returns info message.
      *
-     * @return string|null The info text
+     * @return string The info text
      */
     public function getInfo()
     {
@@ -131,7 +111,7 @@ abstract class BaseNode implements NodeInterface
     /**
      * Retrieves the example configuration for this node.
      *
-     * @return string|array|null The example
+     * @return string|array The example
      */
     public function getExample()
     {
@@ -146,7 +126,7 @@ abstract class BaseNode implements NodeInterface
      */
     public function addEquivalentValue($originalValue, $equivalentValue)
     {
-        $this->equivalentValues[] = [$originalValue, $equivalentValue];
+        $this->equivalentValues[] = array($originalValue, $equivalentValue);
     }
 
     /**
@@ -157,19 +137,6 @@ abstract class BaseNode implements NodeInterface
     public function setRequired($boolean)
     {
         $this->required = (bool) $boolean;
-    }
-
-    /**
-     * Sets this node as deprecated.
-     *
-     * You can use %node% and %path% placeholders in your message to display,
-     * respectively, the node name and its complete path.
-     *
-     * @param string|null $message Deprecated message
-     */
-    public function setDeprecated($message)
-    {
-        $this->deprecationMessage = $message;
     }
 
     /**
@@ -208,29 +175,6 @@ abstract class BaseNode implements NodeInterface
     public function isRequired()
     {
         return $this->required;
-    }
-
-    /**
-     * Checks if this node is deprecated.
-     *
-     * @return bool
-     */
-    public function isDeprecated()
-    {
-        return null !== $this->deprecationMessage;
-    }
-
-    /**
-     * Returns the deprecated message.
-     *
-     * @param string $node the configuration node name
-     * @param string $path the path of the node
-     *
-     * @return string
-     */
-    public function getDeprecationMessage($node, $path)
-    {
-        return strtr($this->deprecationMessage, ['%node%' => $node, '%path%' => $path]);
     }
 
     /**
@@ -299,9 +243,9 @@ abstract class BaseNode implements NodeInterface
     /**
      * Normalizes the value before any other normalization is applied.
      *
-     * @param mixed $value
+     * @param $value
      *
-     * @return mixed The normalized array value
+     * @return The normalized array value
      */
     protected function preNormalize($value)
     {

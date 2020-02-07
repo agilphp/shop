@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
@@ -26,7 +27,7 @@ class CountValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Count) {
-            throw new UnexpectedTypeException($constraint, Count::class);
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Count');
         }
 
         if (null === $value) {
@@ -40,25 +41,45 @@ class CountValidator extends ConstraintValidator
         $count = \count($value);
 
         if (null !== $constraint->max && $count > $constraint->max) {
-            $this->context->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->maxMessage)
-                ->setParameter('{{ count }}', $count)
-                ->setParameter('{{ limit }}', $constraint->max)
-                ->setInvalidValue($value)
-                ->setPlural((int) $constraint->max)
-                ->setCode(Count::TOO_MANY_ERROR)
-                ->addViolation();
+            if ($this->context instanceof ExecutionContextInterface) {
+                $this->context->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->maxMessage)
+                    ->setParameter('{{ count }}', $count)
+                    ->setParameter('{{ limit }}', $constraint->max)
+                    ->setInvalidValue($value)
+                    ->setPlural((int) $constraint->max)
+                    ->setCode(Count::TOO_MANY_ERROR)
+                    ->addViolation();
+            } else {
+                $this->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->maxMessage)
+                    ->setParameter('{{ count }}', $count)
+                    ->setParameter('{{ limit }}', $constraint->max)
+                    ->setInvalidValue($value)
+                    ->setPlural((int) $constraint->max)
+                    ->setCode(Count::TOO_MANY_ERROR)
+                    ->addViolation();
+            }
 
             return;
         }
 
         if (null !== $constraint->min && $count < $constraint->min) {
-            $this->context->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->minMessage)
-                ->setParameter('{{ count }}', $count)
-                ->setParameter('{{ limit }}', $constraint->min)
-                ->setInvalidValue($value)
-                ->setPlural((int) $constraint->min)
-                ->setCode(Count::TOO_FEW_ERROR)
-                ->addViolation();
+            if ($this->context instanceof ExecutionContextInterface) {
+                $this->context->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->minMessage)
+                    ->setParameter('{{ count }}', $count)
+                    ->setParameter('{{ limit }}', $constraint->min)
+                    ->setInvalidValue($value)
+                    ->setPlural((int) $constraint->min)
+                    ->setCode(Count::TOO_FEW_ERROR)
+                    ->addViolation();
+            } else {
+                $this->buildViolation($constraint->min == $constraint->max ? $constraint->exactMessage : $constraint->minMessage)
+                    ->setParameter('{{ count }}', $count)
+                    ->setParameter('{{ limit }}', $constraint->min)
+                    ->setInvalidValue($value)
+                    ->setPlural((int) $constraint->min)
+                    ->setCode(Count::TOO_FEW_ERROR)
+                    ->addViolation();
+            }
         }
     }
 }

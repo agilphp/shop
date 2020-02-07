@@ -11,7 +11,9 @@
 
 namespace Symfony\Component\Validator;
 
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface as ExecutionContextInterface2Dot5;
+use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
+use Symfony\Component\Validator\Violation\LegacyConstraintViolationBuilder;
 
 /**
  * Base class for constraint validators.
@@ -32,7 +34,7 @@ abstract class ConstraintValidator implements ConstraintValidatorInterface
     const OBJECT_TO_STRING = 2;
 
     /**
-     * @var ExecutionContextInterface
+     * @var ExecutionContextInterface2Dot5
      */
     protected $context;
 
@@ -42,6 +44,51 @@ abstract class ConstraintValidator implements ConstraintValidatorInterface
     public function initialize(ExecutionContextInterface $context)
     {
         $this->context = $context;
+    }
+
+    /**
+     * Wrapper for {@link ExecutionContextInterface::buildViolation} that
+     * supports the 2.4 context API.
+     *
+     * @param string $message    The violation message
+     * @param array  $parameters The message parameters
+     *
+     * @return ConstraintViolationBuilderInterface The violation builder
+     *
+     * @deprecated since version 2.5, to be removed in 3.0.
+     */
+    protected function buildViolation($message, array $parameters = array())
+    {
+        @trigger_error('The '.__METHOD__.' is deprecated since Symfony 2.5 and will be removed in 3.0.', E_USER_DEPRECATED);
+
+        if ($this->context instanceof ExecutionContextInterface2Dot5) {
+            return $this->context->buildViolation($message, $parameters);
+        }
+
+        return new LegacyConstraintViolationBuilder($this->context, $message, $parameters);
+    }
+
+    /**
+     * Wrapper for {@link ExecutionContextInterface::buildViolation} that
+     * supports the 2.4 context API.
+     *
+     * @param ExecutionContextInterface $context    The context to use
+     * @param string                    $message    The violation message
+     * @param array                     $parameters The message parameters
+     *
+     * @return ConstraintViolationBuilderInterface The violation builder
+     *
+     * @deprecated since version 2.5, to be removed in 3.0.
+     */
+    protected function buildViolationInContext(ExecutionContextInterface $context, $message, array $parameters = array())
+    {
+        @trigger_error('The '.__METHOD__.' is deprecated since Symfony 2.5 and will be removed in 3.0.', E_USER_DEPRECATED);
+
+        if ($context instanceof ExecutionContextInterface2Dot5) {
+            return $context->buildViolation($message, $parameters);
+        }
+
+        return new LegacyConstraintViolationBuilder($context, $message, $parameters);
     }
 
     /**
@@ -85,14 +132,23 @@ abstract class ConstraintValidator implements ConstraintValidatorInterface
      */
     protected function formatValue($value, $format = 0)
     {
-        if (($format & self::PRETTY_DATE) && $value instanceof \DateTimeInterface) {
-            if (class_exists('IntlDateFormatter')) {
-                $formatter = new \IntlDateFormatter(\Locale::getDefault(), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT, 'UTC');
+        $isDateTime = $value instanceof \DateTime || $value instanceof \DateTimeInterface;
 
-                return $formatter->format(new \DateTime(
-                    $value->format('Y-m-d H:i:s.u'),
-                    new \DateTimeZone('UTC')
-                ));
+        if (($format & self::PRETTY_DATE) && $isDateTime) {
+            if (class_exists('IntlDateFormatter')) {
+                $locale = \Locale::getDefault();
+                $formatter = new \IntlDateFormatter($locale, \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT);
+
+                // neither the native nor the stub IntlDateFormatter support
+                // DateTimeImmutable as of yet
+                if (!$value instanceof \DateTime) {
+                    $value = new \DateTime(
+                        $value->format('Y-m-d H:i:s.u e'),
+                        $value->getTimezone()
+                    );
+                }
+
+                return $formatter->format($value);
             }
 
             return $value->format('Y-m-d H:i:s');

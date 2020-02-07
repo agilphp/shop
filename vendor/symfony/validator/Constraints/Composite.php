@@ -62,7 +62,7 @@ abstract class Composite extends Constraint
         $nestedConstraints = $this->$compositeOption;
 
         if (!\is_array($nestedConstraints)) {
-            $nestedConstraints = [$nestedConstraints];
+            $nestedConstraints = array($nestedConstraints);
         }
 
         foreach ($nestedConstraints as $constraint) {
@@ -80,7 +80,7 @@ abstract class Composite extends Constraint
         }
 
         if (!property_exists($this, 'groups')) {
-            $mergedGroups = [];
+            $mergedGroups = array();
 
             foreach ($nestedConstraints as $constraint) {
                 foreach ($constraint->groups as $group) {

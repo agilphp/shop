@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
@@ -32,14 +33,15 @@ class LuhnValidator extends ConstraintValidator
     /**
      * Validates a credit card number with the Luhn algorithm.
      *
-     * @param mixed $value
+     * @param mixed      $value
+     * @param Constraint $constraint
      *
      * @throws UnexpectedTypeException when the given credit card number is no string
      */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Luhn) {
-            throw new UnexpectedTypeException($constraint, Luhn::class);
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Luhn');
         }
 
         if (null === $value || '' === $value) {
@@ -55,10 +57,17 @@ class LuhnValidator extends ConstraintValidator
         $value = (string) $value;
 
         if (!ctype_digit($value)) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $this->formatValue($value))
-                ->setCode(Luhn::INVALID_CHARACTERS_ERROR)
-                ->addViolation();
+            if ($this->context instanceof ExecutionContextInterface) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Luhn::INVALID_CHARACTERS_ERROR)
+                    ->addViolation();
+            } else {
+                $this->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Luhn::INVALID_CHARACTERS_ERROR)
+                    ->addViolation();
+            }
 
             return;
         }
@@ -82,14 +91,21 @@ class LuhnValidator extends ConstraintValidator
         //         ^     ^     ^     ^     ^
         //    =    1+8 + 4  +  6  +  1+6 + 2
         for ($i = $length - 2; $i >= 0; $i -= 2) {
-            $checkSum += array_sum(str_split((int) $value[$i] * 2));
+            $checkSum += array_sum(str_split($value[$i] * 2));
         }
 
         if (0 === $checkSum || 0 !== $checkSum % 10) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $this->formatValue($value))
-                ->setCode(Luhn::CHECKSUM_FAILED_ERROR)
-                ->addViolation();
+            if ($this->context instanceof ExecutionContextInterface) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Luhn::CHECKSUM_FAILED_ERROR)
+                    ->addViolation();
+            } else {
+                $this->buildViolation($constraint->message)
+                    ->setParameter('{{ value }}', $this->formatValue($value))
+                    ->setCode(Luhn::CHECKSUM_FAILED_ERROR)
+                    ->addViolation();
+            }
         }
     }
 }

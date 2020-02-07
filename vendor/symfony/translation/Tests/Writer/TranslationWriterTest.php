@@ -11,39 +11,22 @@
 
 namespace Symfony\Component\Translation\Tests\Writer;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Translation\Dumper\DumperInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\Writer\TranslationWriter;
 
-class TranslationWriterTest extends TestCase
+class TranslationWriterTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @group legacy
-     * @expectedDeprecation The "Symfony\Component\Translation\Writer\TranslationWriter::writeTranslations()" method is deprecated since Symfony 3.4 and will be removed in 4.0. Use write() instead.
-     */
     public function testWriteTranslations()
     {
-        $dumper = $this->getMockBuilder('Symfony\Component\Translation\Dumper\DumperInterface')->getMock();
+        $dumper = $this->getMock('Symfony\Component\Translation\Dumper\DumperInterface');
         $dumper
             ->expects($this->once())
             ->method('dump');
 
         $writer = new TranslationWriter();
         $writer->addDumper('test', $dumper);
-        $writer->writeTranslations(new MessageCatalogue('en'), 'test');
-    }
-
-    public function testWrite()
-    {
-        $dumper = $this->getMockBuilder('Symfony\Component\Translation\Dumper\DumperInterface')->getMock();
-        $dumper
-            ->expects($this->once())
-            ->method('dump');
-
-        $writer = new TranslationWriter();
-        $writer->addDumper('test', $dumper);
-        $writer->write(new MessageCatalogue([]), 'test');
+        $writer->writeTranslations(new MessageCatalogue(array()), 'test');
     }
 
     public function testDisableBackup()
@@ -62,7 +45,7 @@ class TranslationWriterTest extends TestCase
 
 class NonBackupDumper implements DumperInterface
 {
-    public function dump(MessageCatalogue $messages, $options = [])
+    public function dump(MessageCatalogue $messages, $options = array())
     {
     }
 }
@@ -71,7 +54,7 @@ class BackupDumper implements DumperInterface
 {
     public $backup = true;
 
-    public function dump(MessageCatalogue $messages, $options = [])
+    public function dump(MessageCatalogue $messages, $options = array())
     {
     }
 

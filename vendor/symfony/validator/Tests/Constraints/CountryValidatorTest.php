@@ -14,24 +14,13 @@ namespace Symfony\Component\Validator\Tests\Constraints;
 use Symfony\Component\Intl\Util\IntlTestHelper;
 use Symfony\Component\Validator\Constraints\Country;
 use Symfony\Component\Validator\Constraints\CountryValidator;
-use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
+use Symfony\Component\Validator\Validation;
 
-class CountryValidatorTest extends ConstraintValidatorTestCase
+class CountryValidatorTest extends AbstractConstraintValidatorTest
 {
-    private $defaultLocale;
-
-    protected function setUp()
+    protected function getApiVersion()
     {
-        parent::setUp();
-
-        $this->defaultLocale = \Locale::getDefault();
-    }
-
-    protected function tearDown()
-    {
-        parent::tearDown();
-
-        \Locale::setDefault($this->defaultLocale);
+        return Validation::API_VERSION_2_5;
     }
 
     protected function createValidator()
@@ -53,9 +42,11 @@ class CountryValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
     public function testExpectsStringCompatibleType()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\UnexpectedTypeException');
         $this->validator->validate(new \stdClass(), new Country());
     }
 
@@ -71,11 +62,11 @@ class CountryValidatorTest extends ConstraintValidatorTestCase
 
     public function getValidCountries()
     {
-        return [
-            ['GB'],
-            ['AT'],
-            ['MY'],
-        ];
+        return array(
+            array('GB'),
+            array('AT'),
+            array('MY'),
+        );
     }
 
     /**
@@ -83,9 +74,9 @@ class CountryValidatorTest extends ConstraintValidatorTestCase
      */
     public function testInvalidCountries($country)
     {
-        $constraint = new Country([
+        $constraint = new Country(array(
             'message' => 'myMessage',
-        ]);
+        ));
 
         $this->validator->validate($country, $constraint);
 
@@ -97,10 +88,10 @@ class CountryValidatorTest extends ConstraintValidatorTestCase
 
     public function getInvalidCountries()
     {
-        return [
-            ['foobar'],
-            ['EN'],
-        ];
+        return array(
+            array('foobar'),
+            array('EN'),
+        );
     }
 
     public function testValidateUsingCountrySpecificLocale()

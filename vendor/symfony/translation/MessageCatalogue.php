@@ -12,25 +12,28 @@
 namespace Symfony\Component\Translation;
 
 use Symfony\Component\Config\Resource\ResourceInterface;
-use Symfony\Component\Translation\Exception\LogicException;
 
 /**
+ * MessageCatalogue.
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterface
 {
-    private $messages = [];
-    private $metadata = [];
-    private $resources = [];
+    private $messages = array();
+    private $metadata = array();
+    private $resources = array();
     private $locale;
     private $fallbackCatalogue;
     private $parent;
 
     /**
+     * Constructor.
+     *
      * @param string $locale   The locale
      * @param array  $messages An array of messages classified by domain
      */
-    public function __construct($locale, array $messages = [])
+    public function __construct($locale, array $messages = array())
     {
         $this->locale = $locale;
         $this->messages = $messages;
@@ -61,7 +64,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
             return $this->messages;
         }
 
-        return isset($this->messages[$domain]) ? $this->messages[$domain] : [];
+        return isset($this->messages[$domain]) ? $this->messages[$domain] : array();
     }
 
     /**
@@ -69,7 +72,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
      */
     public function set($id, $translation, $domain = 'messages')
     {
-        $this->add([$id => $translation], $domain);
+        $this->add(array($id => $translation), $domain);
     }
 
     /**
@@ -117,7 +120,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
      */
     public function replace($messages, $domain = 'messages')
     {
-        $this->messages[$domain] = [];
+        $this->messages[$domain] = array();
 
         $this->add($messages, $domain);
     }
@@ -130,9 +133,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
         if (!isset($this->messages[$domain])) {
             $this->messages[$domain] = $messages;
         } else {
-            foreach ($messages as $id => $message) {
-                $this->messages[$domain][$id] = $message;
-            }
+            $this->messages[$domain] = array_replace($this->messages[$domain], $messages);
         }
     }
 
@@ -142,7 +143,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     public function addCatalogue(MessageCatalogueInterface $catalogue)
     {
         if ($catalogue->getLocale() !== $this->locale) {
-            throw new LogicException(sprintf('Cannot add a catalogue for locale "%s" as the current locale for this catalogue is "%s"', $catalogue->getLocale(), $this->locale));
+            throw new \LogicException(sprintf('Cannot add a catalogue for locale "%s" as the current locale for this catalogue is "%s"', $catalogue->getLocale(), $this->locale));
         }
 
         foreach ($catalogue->all() as $domain => $messages) {
@@ -168,18 +169,14 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
         $c = $catalogue;
         while ($c = $c->getFallbackCatalogue()) {
             if ($c->getLocale() === $this->getLocale()) {
-                throw new LogicException(sprintf('Circular reference detected when adding a fallback catalogue for locale "%s".', $catalogue->getLocale()));
+                throw new \LogicException(sprintf('Circular reference detected when adding a fallback catalogue for locale "%s".', $catalogue->getLocale()));
             }
         }
 
         $c = $this;
         do {
             if ($c->getLocale() === $catalogue->getLocale()) {
-                throw new LogicException(sprintf('Circular reference detected when adding a fallback catalogue for locale "%s".', $catalogue->getLocale()));
-            }
-
-            foreach ($catalogue->getResources() as $resource) {
-                $c->addResource($resource);
+                throw new \LogicException(sprintf('Circular reference detected when adding a fallback catalogue for locale "%s".', $catalogue->getLocale()));
             }
         } while ($c = $c->parent);
 
@@ -233,8 +230,6 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
                 return $this->metadata[$domain][$key];
             }
         }
-
-        return null;
     }
 
     /**
@@ -251,7 +246,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     public function deleteMetadata($key = '', $domain = 'messages')
     {
         if ('' == $domain) {
-            $this->metadata = [];
+            $this->metadata = array();
         } elseif ('' == $key) {
             unset($this->metadata[$domain]);
         } else {

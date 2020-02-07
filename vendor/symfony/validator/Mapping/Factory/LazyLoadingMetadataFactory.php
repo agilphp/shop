@@ -14,6 +14,8 @@ namespace Symfony\Component\Validator\Mapping\Factory;
 use Symfony\Component\Validator\Exception\NoSuchMetadataException;
 use Symfony\Component\Validator\Mapping\Cache\CacheInterface;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Mapping\ClassMetadataInterface;
+use Symfony\Component\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Component\Validator\Mapping\Loader\LoaderInterface;
 
 /**
@@ -46,7 +48,7 @@ class LazyLoadingMetadataFactory implements MetadataFactoryInterface
      *
      * @var ClassMetadata[]
      */
-    protected $loadedClasses = [];
+    protected $loadedClasses = array();
 
     /**
      * Creates a new metadata factory.

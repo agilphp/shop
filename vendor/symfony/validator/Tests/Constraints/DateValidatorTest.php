@@ -13,10 +13,15 @@ namespace Symfony\Component\Validator\Tests\Constraints;
 
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateValidator;
-use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
+use Symfony\Component\Validator\Validation;
 
-class DateValidatorTest extends ConstraintValidatorTestCase
+class DateValidatorTest extends AbstractConstraintValidatorTest
 {
+    protected function getApiVersion()
+    {
+        return Validation::API_VERSION_2_5;
+    }
+
     protected function createValidator()
     {
         return new DateValidator();
@@ -43,16 +48,11 @@ class DateValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function testDateTimeImmutableClassIsValid()
-    {
-        $this->validator->validate(new \DateTimeImmutable(), new Date());
-
-        $this->assertNoViolation();
-    }
-
+    /**
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
     public function testExpectsStringCompatibleType()
     {
-        $this->expectException('Symfony\Component\Validator\Exception\UnexpectedTypeException');
         $this->validator->validate(new \stdClass(), new Date());
     }
 
@@ -68,11 +68,11 @@ class DateValidatorTest extends ConstraintValidatorTestCase
 
     public function getValidDates()
     {
-        return [
-            ['2010-01-01'],
-            ['1955-12-12'],
-            ['2030-05-31'],
-        ];
+        return array(
+            array('2010-01-01'),
+            array('1955-12-12'),
+            array('2030-05-31'),
+        );
     }
 
     /**
@@ -80,9 +80,9 @@ class DateValidatorTest extends ConstraintValidatorTestCase
      */
     public function testInvalidDates($date, $code)
     {
-        $constraint = new Date([
+        $constraint = new Date(array(
             'message' => 'myMessage',
-        ]);
+        ));
 
         $this->validator->validate($date, $constraint);
 
@@ -94,13 +94,13 @@ class DateValidatorTest extends ConstraintValidatorTestCase
 
     public function getInvalidDates()
     {
-        return [
-            ['foobar', Date::INVALID_FORMAT_ERROR],
-            ['foobar 2010-13-01', Date::INVALID_FORMAT_ERROR],
-            ['2010-13-01 foobar', Date::INVALID_FORMAT_ERROR],
-            ['2010-13-01', Date::INVALID_DATE_ERROR],
-            ['2010-04-32', Date::INVALID_DATE_ERROR],
-            ['2010-02-29', Date::INVALID_DATE_ERROR],
-        ];
+        return array(
+            array('foobar', Date::INVALID_FORMAT_ERROR),
+            array('foobar 2010-13-01', Date::INVALID_FORMAT_ERROR),
+            array('2010-13-01 foobar', Date::INVALID_FORMAT_ERROR),
+            array('2010-13-01', Date::INVALID_DATE_ERROR),
+            array('2010-04-32', Date::INVALID_DATE_ERROR),
+            array('2010-02-29', Date::INVALID_DATE_ERROR),
+        );
     }
 }

@@ -86,6 +86,9 @@ class carritoControlador extends Sisnuc\APControlador
 
     }
 
+    /**
+     * Funcion para listar los item del carrito
+     */
     public function listar()
     {
         $this->_vista->titulo = 'EfraShop';
@@ -99,7 +102,9 @@ class carritoControlador extends Sisnuc\APControlador
         }
         $this->_vista->imprimirVista('carrito', 'carrito');
     }
-
+    /**
+     * Funcion para solicitar datos de usuario
+     */
     public function checkOut()
     {
         $this->_vista->titulo = 'EfraShop';
@@ -111,7 +116,9 @@ class carritoControlador extends Sisnuc\APControlador
 
         $this->_vista->imprimirVista('checkout', 'carrito');
     }
-
+    /**
+     * Funcion para registra el usuario en la base de datos y los productos comprados
+     */
     public function registrarUsuario()
     {
         $sTienda = $this->cargaModelo('tienda');
@@ -132,7 +139,9 @@ class carritoControlador extends Sisnuc\APControlador
         }
         $this->pagar();
     }
-
+    /**
+     * Creamos un array de los productos y se agregan en articulos
+     */
     public function addProducto()
     {
 
@@ -144,22 +153,6 @@ class carritoControlador extends Sisnuc\APControlador
         );
 
         $this->add();
-    }
-
-    public function recibo()
-    {
-
-        if ($_SESSION['nivel'] == 256) {
-            $this->_vista->titulo = 'CalimaFramework Login';
-            $this->_vista->error  = 'CalimaFramework Login';
-            $this->_vista->menu   = $this->_menu->menuBasico();
-            $this->_vista->imprimirVista('recibo', 'carrito');
-        } elseif ($_SESSION['nivel'] != 256) {
-            $this->_vista->titulo = 'CalimaFramework Login';
-            $this->_vista->error  = 'CalimaFramework Login';
-            $this->_vista->menu   = $this->_menu->menuBasico();
-            $this->_vista->imprimirVista('login', 'carrito');
-        }
     }
 
     //añadimos un producto al carrito
@@ -319,6 +312,29 @@ class carritoControlador extends Sisnuc\APControlador
         return true;
     }
 
+    //Borra solo un producto por unique id via get
+    public function borarUnproducto()
+    {
+        echo $unique_id = $_GET['unique_id'];
+        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
+        //si no existe el carrito
+        if ($this->carrito === null) {
+            throw new Exception("El carrito no existe!", 1);
+        }
+
+        //si no existe la id única del producto en el carrito
+        if (!isset($this->carrito[$unique_id])) {
+            throw new Exception("La unique_id $unique_id no existe!", 1);
+        }
+
+        //en otro caso, eliminamos el producto, actualizamos el carrito y
+        //el precio y cantidad totales del carrito
+        unset($_SESSION["carrito"][$unique_id]);
+        $this->update_carrito();
+        $this->update_precio_cantidad();
+        $this->_ayuda->redireccionUrl('carrito/listar');
+    }
+
     //eliminamos el contenido del carrito por completo
     public function destroy()
     {
@@ -362,26 +378,6 @@ class carritoControlador extends Sisnuc\APControlador
         }
     }
 
-    public function pagado()
-    {
-        if (!isset($_SESSION["carrito"])) {
-            unset($_SESSION["carrito"]);
-            $this->carrito = null;
-        }
-        $this->_vista->titulo = 'EfraShop';
-        $gtienda              = $this->cargaModelo('tienda');
-        $this->_vista->menu   = $gtienda->cargarMenu();
-        $this->_ayuda->redireccionUrl('tienda/pagado');
-    }
-
-    public function cancelado()
-    {
-        $this->_vista->titulo = 'EfraShop';
-        $gtienda              = $this->cargaModelo('tienda');
-        $this->_vista->menu   = $gtienda->cargarMenu();
-        $this->_ayuda->redireccionUrl('tienda/cancelado');
-    }
-
     public function pagar()
     {
 
@@ -390,6 +386,8 @@ class carritoControlador extends Sisnuc\APControlador
             'tranKey' => '024h1IlD',
             'url'     => 'https://dev.placetopay.com/redirection/',
         ]);
+
+        $precio_total = number_format($_SESSION["carrito"]['precio_total']);
 
         // Creating a random reference for the test
         $reference = 'TEST_' . time();
@@ -456,11 +454,11 @@ class carritoControlador extends Sisnuc\APControlador
                         ],
                         [
                             "kind"   => "subtotal",
-                            "amount" => 940,
+                            "amount" => $precio_total,
                         ],
                     ],
-                    "currency" => "CO",
-                    "total"    => 1076.3,
+                    "currency" => "USD",
+                    "total"    => $precio_total,
                 ],
                 "items"        => [
                     [

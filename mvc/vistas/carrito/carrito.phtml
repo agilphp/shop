@@ -332,7 +332,7 @@
               <input class="form-control" type="text" value="<?php echo $val['cantidad'];  ?>">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-                <button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+                <a href="<?PHP ECHO Ap_BASE_URL ?>carrito/borarUnproducto?unique_id=<?php echo $val['unique_id'];  ?>"  class="btn btn-danger" type="button"><i class="icon-remove"></i></a>     
               </span>
             </div>
                     </td>

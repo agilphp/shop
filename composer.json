@@ -48,7 +48,9 @@
 				"elmijo/php-error-log": "2.0",
                 "smottt/wideimage": "*",
                 "vlucas/phpdotenv": "*",
-                "dnetix/redirection": "*"               
+                "dnetix/redirection": "*",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "*"              
 	},
          
         

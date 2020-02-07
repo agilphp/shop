@@ -35,11 +35,31 @@ use sistema\nucleo as Sisnuc;
 
 class carritoControlador extends Sisnuc\APControlador
 {
-    //aquí guardamos el contenido del carrito
-    private $carrito   = array();
+
+    /**
+     * @var array
+     * aquí guardamos el contenido del carrito
+     */
+    private $carrito = array();
+    /**
+     * @var array
+     * aquí guardamos los articulos del carrito
+     */
     private $articulos = array();
+    /**
+     * @var objeto
+     * aquí guardamos result de la tabla tblmenu para enviar a las vistas
+     */
     private $_menu;
+    /**
+     * @var string
+     * variable que se usa para hacer redirecciones como un ayudante
+     */
     private $_ayuda;
+    /**
+     * @var string
+     * aquí guardamos sesiones del sistema
+     */
     private $_sesion;
 
     public function __construct()
@@ -105,129 +125,12 @@ class carritoControlador extends Sisnuc\APControlador
 
         $itens = array_values($this->get_content());
 
-        /* echo "<pre>";
-        print_r($itens);
-        echo "<pre>";exit();*/
-        //$order_id=1;
-
         foreach ($itens as $itens_user => $val) {
 
             $sTienda->registrarDetallesM($order_id, $val['id'], $val['cantidad'], $val['precio']);
 
         }
         $this->pagar();
-    }
-
-    public function inicio()
-    {
-
-        $precios = $this->cargaModelo('carro');
-
-        $this->_vista->precio  = $precios->preciosEventosI($_GET['id']);
-        $this->_vista->preciot = $precios->cargarGrupoLocalidad($_GET['id']);
-        //$this->_vista->mapa=$precios->verificarSiHayMapaEvento($_GET['id']);
-
-        $this->destroyCartTotal();
-
-        //$this->_vista->grupo=$precios->cargarGrupoLocalidad($_GET['id']);
-        $this->_vista->Total_Localidades = $precios->getContarLocalidades();
-        $this->_id_loc1                  = $precios->getLocalidades();
-        $this->_vista->evento            = $precios->eventos($_GET['id']);
-        $this->_vista->fotoEvento        = $precios->eventosFotoGet($_GET['id']);
-        $this->_vista->imprimirVista('inicio_compra', 'carrito');
-    }
-
-    public function compraSegura()
-    {
-
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
-        if (isset($_SESSION["carrito"])) {
-            unset($_SESSION["carrito"]);
-            unset($_SESSION['id_prod']);
-            $this->carrito = null;
-        }
-        $precios = $this->cargaModelo('carro');
-        //antes de hacer los cálculos, compruebo que el usuario está logueado
-        //utilizamos el mismo script que antes
-        if ($_SESSION["ultimoAcceso"]) {
-            //sino, calculamos el tiempo transcurrido
-            $fechaGuardada       = $_SESSION["ultimoAcceso"];
-            $ahora               = time();
-            $tiempo_transcurrido = $ahora - $fechaGuardada;
-
-            //comparamos el tiempo transcurrido
-        } elseif ($tiempo_transcurrido >= 600) {
-            //si pasaron 10 minutos o más
-            $this->destroy(); // destruyo la sesión
-            $this->_ayuda->redireccionUrl('carrito/compraSegura');
-            //sino, actualizo la fecha de la sesión
-        } else {
-            $_SESSION["ultimoAcceso"] = $ahora;
-        }
-
-        $this->_vista->titulo  = 'Escojo mis boletas';
-        $this->_vista->error   = 'Escojo mis boletas';
-        $this->_vista->menu    = $this->_menu->menuBasico();
-        $this->_vista->precio  = $precios->preciosEventos($_GET['id']);
-        $this->_vista->evento  = $precios->eventos($_GET['id']);
-        $this->_vista->estados = $precios->estados($_GET['id']);
-        $this->_vista->mesas   = $precios->getMesas($_GET['id']);
-        if ($_GET['tipo'] == 3) {
-            $precios->estadoPalco($_GET['press'], '1');
-        }
-        $this->_vista->fotoEvento = $precios->eventosFotoGet($_GET['id']);
-        $this->_vista->imprimirVista('compra', 'carrito');
-    }
-
-    public function compraSeguraEnLinea()
-    {
-        $precios = $this->cargaModelo('carro');
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
-        $this->_vista->titulo      = ' Veo mi recibo / Realizo mi pago';
-        $this->_vista->error       = ' Veo mi recibo / Realizo mi pago';
-        $this->_vista->menu        = $this->_menu->menuBasico();
-        $this->_vista->carro       = $this->get_content();
-        $datosCarro                = $this->get_content();
-        $this->_vista->evento      = $precios->eventos($_SESSION['id_prod']);
-        $this->_vista->localidades = $precios->localidades($_SESSION['localidad']);
-        foreach ($datosCarro as $producto) {
-            $this->_vista->entrega = $precios->entrega($producto['entrega']);}
-        $this->_vista->datosUsuario = $precios->datosUsuario($_SESSION['id_usuario']);
-        $this->_vista->imprimirVista('compra2', 'carrito');
-    }
-
-    public function compraSeguraLogin()
-    {
-        $precios = $this->cargaModelo('carro');
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
-        $this->_vista->titulo = 'CalimaFramework Login';
-        $this->_vista->error  = 'CalimaFramework Login';
-        $this->_vista->menu   = $this->_menu->menuBasico();
-        $this->_vista->carro  = $this->get_content();
-        $this->_vista->evento = $precios->eventosLogin();
-        $this->_vista->imprimirVista('compra3', 'carrito');
-    }
-
-    public function sesionPagos()
-    {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
-        $_SESSION['articulo']     = $_POST['account'];
-        $_SESSION['cantidad']     = $_POST['cantidad'];
-        $_SESSION['entrega']      = $_POST['entrega'];
-        $_SESSION["ultimoAcceso"] = time();
-
-        $this->_ayuda->redireccionUrl('carrito/registro');
-    }
-
-    public function addSesionPagos()
-    {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
-        $_SESSION['articulo'] += $_POST['account'];
-        $_SESSION['cantidad'] += $_POST['cantidad'];
-        $_SESSION['entrega'] += $_POST['entrega'];
-        $_SESSION["ultimoAcceso"] = time();
-
-        $this->_ayuda->redireccionUrl('carrito/compraSeguraEnLinea');
     }
 
     public function addProducto()
@@ -238,7 +141,6 @@ class carritoControlador extends Sisnuc\APControlador
             "cantidad" => $_GET['cantidad'],
             "precio"   => $_GET['precio'],
             "nombre"   => $_GET['nombre'],
-
         );
 
         $this->add();
@@ -246,7 +148,6 @@ class carritoControlador extends Sisnuc\APControlador
 
     public function recibo()
     {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
 
         if ($_SESSION['nivel'] == 256) {
             $this->_vista->titulo = 'CalimaFramework Login';
@@ -254,7 +155,6 @@ class carritoControlador extends Sisnuc\APControlador
             $this->_vista->menu   = $this->_menu->menuBasico();
             $this->_vista->imprimirVista('recibo', 'carrito');
         } elseif ($_SESSION['nivel'] != 256) {
-
             $this->_vista->titulo = 'CalimaFramework Login';
             $this->_vista->error  = 'CalimaFramework Login';
             $this->_vista->menu   = $this->_menu->menuBasico();
@@ -284,10 +184,8 @@ class carritoControlador extends Sisnuc\APControlador
 
         //debemos crear un identificador único para cada producto
         $unique_id = md5($this->articulos["id"]);
-
         //creamos la id única para el producto
         $this->articulos["unique_id"] = $unique_id;
-
         //si no está vacío el carrito lo recorremos
         if (!empty($this->carrito)) {
             foreach ($this->carrito as $row) {
@@ -304,24 +202,18 @@ class carritoControlador extends Sisnuc\APControlador
         //evitamos que nos pongan números negativos y que sólo sean números para cantidad y precio
         $this->articulos["cantidad"] = trim(preg_replace('/([^0-9\.])/i', '', $this->articulos["cantidad"]));
         $this->articulos["precio"]   = trim(preg_replace('/([^0-9\.])/i', '', $this->articulos["precio"]));
-
         //añadimos un elemento total al array carrito para
         //saber el precio total de la suma de este artículo
         $this->articulos["total"] = $this->articulos["cantidad"] * $this->articulos["precio"];
-
         //primero debemos eliminar el producto si es que estaba en el carrito
         $this->unset_producto($unique_id);
-
         ///ahora añadimos el producto al carrito
         $_SESSION["carrito"][$unique_id] = $this->articulos;
-
         //actualizamos el carrito
         $this->update_carrito();
-
         //actualizamos el precio total y el número de artículos del carrito
         //una vez hemos añadido el producto
         $this->update_precio_cantidad();
-
         $this->_ayuda->redireccionUrl('tienda/index');
     }
 
@@ -333,9 +225,9 @@ class carritoControlador extends Sisnuc\APControlador
         //seteamos las variables precio y artículos a 0
         $precio    = 0;
         $articulos = 0;
-
         //recorrecmos el contenido del carrito para actualizar
         //el precio total y el número de artículos
+
         foreach ($this->carrito as $row) {
             $precio += ($row['precio'] * $row['cantidad']);
             $articulos += $row['cantidad'];
@@ -401,7 +293,6 @@ class carritoControlador extends Sisnuc\APControlador
     //de nuevo pero actualizado
     private function unset_producto($unique_id)
     {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
         unset($_SESSION["carrito"][$unique_id]);
     }
 
@@ -431,7 +322,6 @@ class carritoControlador extends Sisnuc\APControlador
     //eliminamos el contenido del carrito por completo
     public function destroy()
     {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
         unset($_SESSION["carrito"]);
         $this->carrito = null;
         //return true;
@@ -453,7 +343,6 @@ class carritoControlador extends Sisnuc\APControlador
 
     public function destroyCartTotal()
     {
-        //$this->_sesion->iniciarSesion('_s', Cf_SESION_PARAMETRO_SEGURO);
         unset($_SESSION["carrito"]);
         unset($_SESSION['id_prod']);
         unset($_SESSION['usuario']);
@@ -461,8 +350,6 @@ class carritoControlador extends Sisnuc\APControlador
         unset($_SESSION['nivel']);
         $this->carrito   = null;
         $this->articulos = null;
-        //return true;
-        //$this->_ayuda->Redireccion('http://www.zonaticket.com.co');
     }
 
     //actualizamos el contenido del carrito
@@ -475,25 +362,45 @@ class carritoControlador extends Sisnuc\APControlador
         }
     }
 
+    public function pagado()
+    {
+        if (!isset($_SESSION["carrito"])) {
+            unset($_SESSION["carrito"]);
+            $this->carrito = null;
+        }
+        $this->_vista->titulo = 'EfraShop';
+        $gtienda              = $this->cargaModelo('tienda');
+        $this->_vista->menu   = $gtienda->cargarMenu();
+        $this->_ayuda->redireccionUrl('tienda/pagado');
+    }
+
+    public function cancelado()
+    {
+        $this->_vista->titulo = 'EfraShop';
+        $gtienda              = $this->cargaModelo('tienda');
+        $this->_vista->menu   = $gtienda->cargarMenu();
+        $this->_ayuda->redireccionUrl('tienda/cancelado');
+    }
+
     public function pagar()
     {
 
         $placetopay = new Dnetix\Redirection\PlacetoPay([
-    'login' => '6dd490faf9cb87a9862245da41170ff2',
-    'tranKey' => '024h1IlD',
-    'url' => 'https://dev.placetopay.com/redirection/',
-]);
-       // require_once __DIR__ . "bootstrap.php";
+            'login'   => '6dd490faf9cb87a9862245da41170ff2',
+            'tranKey' => '024h1IlD',
+            'url'     => 'https://dev.placetopay.com/redirection/',
+        ]);
+
         // Creating a random reference for the test
         $reference = 'TEST_' . time();
 
-// Request Information
+        // Request Information
         $request = [
             "locale"         => "es_CO",
             "payer"          => [
                 "name"         => "Kellie Gerhold",
                 "surname"      => "Yost",
-                "email"        => "flowe@anderson.com",
+                "email"        => "efrasoft@gmail.com",
                 "documentType" => "CC",
                 "document"     => "1848839248",
                 "mobile"       => "3006108300",
@@ -524,7 +431,7 @@ class carritoControlador extends Sisnuc\APControlador
             ],
             "payment"        => [
                 "reference"    => $reference,
-                "description"  => "Iusto sit et voluptatem.",
+                "description"  => "Compra de celular.",
                 "amount"       => [
                     "taxes"    => [
                         [
@@ -552,42 +459,42 @@ class carritoControlador extends Sisnuc\APControlador
                             "amount" => 940,
                         ],
                     ],
-                    "currency" => "USD",
+                    "currency" => "CO",
                     "total"    => 1076.3,
                 ],
                 "items"        => [
                     [
                         "sku"      => 26443,
                         "name"     => "Qui voluptatem excepturi.",
-                        "category" => "physical",
+                        "category" => "Moviles",
                         "qty"      => 1,
                         "price"    => 940,
-                        "tax"      => 89.3,
+                        "tax"      => 19,
                     ],
                 ],
                 "shipping"     => [
-                    "name"         => "Kellie Gerhold",
-                    "surname"      => "Yost",
-                    "email"        => "flowe@anderson.com",
+                    "name"         => "Efrain",
+                    "surname"      => "Restrepo",
+                    "email"        => "efrasoft@gmail.com",
                     "documentType" => "CC",
-                    "document"     => "1848839248",
-                    "mobile"       => "3006108300",
+                    "document"     => "94490217",
+                    "mobile"       => "3174208855",
                     "address"      => [
                         "street"     => "703 Dicki Island Apt. 609",
-                        "city"       => "North Randallstad",
-                        "state"      => "Antioquia",
-                        "postalCode" => "46292",
-                        "country"    => "US",
-                        "phone"      => "363-547-1441 x383",
+                        "city"       => "Cali",
+                        "state"      => "Valle",
+                        "postalCode" => "76001",
+                        "country"    => "CO",
+                        "phone"      => "3174208855",
                     ],
                 ],
                 "allowPartial" => false,
             ],
-            "expiration"     => date('c', strtotime('+1 hour')),
-            "ipAddress"      => "127.0.0.1",
+            "expiration"     => date('c', strtotime('+2 hour')),
+            "ipAddress"      => "67.23.240.232",
             "userAgent"      => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36",
-            "returnUrl"      => "http://dnetix.dev/p2p/client",
-            "cancelUrl"      => "https://dnetix.co",
+            "returnUrl"      => "http://puntodepagos.com/carrito/pagado",
+            "cancelUrl"      => "http://puntodepagos.com/carrito/cancelado",
             "skipResult"     => false,
             "noBuyerFill"    => false,
             "captureAddress" => false,
@@ -595,15 +502,18 @@ class carritoControlador extends Sisnuc\APControlador
         ];
 
         try {
-           // $placetopay = $this->placetopay();
-            $response   = $placetopay->request($request);
+            // $placetopay = $this->placetopay();
+            $response = $placetopay->request($request);
 
             if ($response->isSuccessful()) {
                 // Redirect the client to the processUrl or display it on the JS extension
-                // $response->processUrl();
+                unset($_SESSION["carrito"]);
+                $this->carrito = null;
+                $url           = $response->processUrl();
+                $this->_ayuda->Redireccion($url);
             } else {
                 // There was some error so check the message
-                // $response->status()->message();
+                $response->status()->message();
             }
             var_dump($response);
         } catch (Exception $e) {
@@ -612,7 +522,4 @@ class carritoControlador extends Sisnuc\APControlador
 
     }
 
-    
-
 }
- 
